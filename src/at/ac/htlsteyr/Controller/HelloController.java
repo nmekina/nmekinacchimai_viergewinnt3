@@ -68,7 +68,9 @@ public class HelloController {
 
 
     public void buttonclick1(ActionEvent actionEvent) {
-        k06.setFill(Paint.valueOf("red"));
+        if (k06.getFill(Paint.valueOf) == "white") {
+            k06.setFill(Paint.valueOf("red"));
+        }
 
     }
 
