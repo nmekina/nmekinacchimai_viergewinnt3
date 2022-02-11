@@ -45,37 +45,37 @@
             <RowConstraints maxHeight="50.0" minHeight="60.0" percentHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="werfen1" alignment="CENTER" mnemonicParsing="false" text="↓" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="werfen1" alignment="CENTER" mnemonicParsing="false" onAction="#buttonclick1" text="↓" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="werfen2" alignment="CENTER" mnemonicParsing="false" text="↓" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="werfen2" alignment="CENTER" mnemonicParsing="false" onAction="#buttonclick2" text="↓" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="werfen3" alignment="CENTER" mnemonicParsing="false" text="↓" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="werfen3" alignment="CENTER" mnemonicParsing="false" onAction="#buttonclick3" text="↓" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="werfen4" alignment="CENTER" mnemonicParsing="false" text="↓" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="werfen4" alignment="CENTER" mnemonicParsing="false" onAction="#buttonclick4" text="↓" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="werfen5" alignment="CENTER" mnemonicParsing="false" text="↓" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="werfen5" alignment="CENTER" mnemonicParsing="false" onAction="#buttonclick5" text="↓" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="werfen6" alignment="CENTER" mnemonicParsing="false" text="↓" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="werfen6" alignment="CENTER" mnemonicParsing="false" onAction="#buttonclick6" text="↓" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>
             </Button>
-            <Button fx:id="werfen7" alignment="CENTER" mnemonicParsing="false" text="↓" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Button fx:id="werfen7" alignment="CENTER" mnemonicParsing="false" onAction="#buttonclick7" text="↓" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="14.0" />
                </font>

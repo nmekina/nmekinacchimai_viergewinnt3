@@ -1,9 +1,11 @@
 package at.ac.htlsteyr.Controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public class HelloController {
@@ -60,6 +62,30 @@ public class HelloController {
     @FXML
     protected void onHelloButtonClick() {
 
+
         //welcomeText.setText("Welcome to JavaFX Application!");
+    }
+
+
+    public void buttonclick1(ActionEvent actionEvent) {
+        k06.setFill(Paint.valueOf("red"));
+    }
+
+    public void buttonclick2(ActionEvent actionEvent) {
+    }
+
+    public void buttonclick3(ActionEvent actionEvent) {
+    }
+
+    public void buttonclick4(ActionEvent actionEvent) {
+    }
+
+    public void buttonclick5(ActionEvent actionEvent) {
+    }
+
+    public void buttonclick6(ActionEvent actionEvent) {
+    }
+
+    public void buttonclick7(ActionEvent actionEvent) {
     }
 }
