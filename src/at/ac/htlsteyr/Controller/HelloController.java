@@ -69,6 +69,7 @@ public class HelloController {
 
     public void buttonclick1(ActionEvent actionEvent) {
         k06.setFill(Paint.valueOf("red"));
+
     }
 
     public void buttonclick2(ActionEvent actionEvent) {
