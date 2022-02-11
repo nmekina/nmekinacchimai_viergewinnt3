@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Circle;
 
 public class HelloController {
     public GridPane test;
@@ -14,6 +15,9 @@ public class HelloController {
     public Button werfen5;
     public Button werfen6;
     public Button werfen7;
+    public Circle k62;
+    public Circle k63;
+    public Circle k64;
 
     @FXML
     protected void onHelloButtonClick() {
