@@ -8,3 +8,5 @@
 | 6 | 02.02.2022 | 2.1 | IntteliJ | Model programmiert, Kommentare hinzugefügt | Christian Chimani | iB |
 | 7 | 03.02.2022 | 2.1 | IntteliJ | Ausgabe verbessert und wincondition | Christian Chimani | iB |
 | 8 | 04.02.2022 | 2.0 | IntteliJ, Scene Builder | GUI(Scene Builder) angefangen, FXML-Fehler, GUI-View angefangen, Consolenanwendung fertiggestellt | Christian Chimani | iB |
+| 9 | 10.02.2022 | 2.1 | Scene Builder | GUI(Scene Builder) aussehen gestaltet, FXML-Fehler behoben | Christian Chimani | iB |
+| 10 | 11.02.2022 | 2.2 | Scene Builder | GUI(Scene Builder) aussehen gestaltet, neues Git Repository erstellt damit fxml funktioniert | Christian Chimani | iB |
