@@ -22,7 +22,7 @@ public class HelloApplicationConsole {
         Spieler spieler1 = new Spieler();
         Spieler spieler2 = new Spieler();
         Spiel s = new Spiel();
-        FeldView fw = (FeldView) new FeldViewConsole();
+        FeldView fw = new FeldViewConsole();
 
         System.out.println("Name: Spieler1: ");
         Scanner scannerspieler1 = new Scanner(System.in);
@@ -59,18 +59,27 @@ public class HelloApplicationConsole {
         }
 
         while (s.checkwin() == false) {
-           // fw.display(spieler1, spieler2);
+            fw.display(spieler1, spieler2);
             spalteneingabe(spieler1, spieler2);
             s.werfen();
             s.spielertausch();
         }
 
-        if (Spiel.spieler2 == true) {
-            System.out.println(spieler2.getNickname() + " hat gewonnen!");
-        } else {
+
+        if (Spiel.spieler1) {
             System.out.println(spieler1.getNickname() + " hat gewonnen!");
+        } else {
+            System.out.println(spieler2.getNickname() + " hat gewonnen!");
         }
 
+        System.out.println("Wollen Sie erneut spielen? (Ja(j), Nein(nicht j)");
+        Scanner scannerneustart = new Scanner(System.in);
+        if (scannerneustart.next().charAt(0) == 'j') {
+            Feld.spalten = 0;
+            Feld.spielfeld = new int[6][7];
+            Spiel.füllungspalten = new int [7];
+            play();
+        }
     }
 
 
@@ -89,17 +98,29 @@ public class HelloApplicationConsole {
             EingabeA = sc.next();
         }
 
-        Feld.spalten = Integer.parseInt(EingabeA);
+        if (EingabeA.charAt(0) == 'R') {
+            Feld.spalten = 0;
+            Feld.spielfeld = new int[6][7];
+            Spiel.füllungspalten = new int [7];
+            play();
+        }
 
-        if (Feld.spalten < 1 || Feld.spalten > 7) {
-            System.out.println();
-            System.out.println("Achtung! Die eingegebene Spaltennummer muss zwischen 1 und 7 liegen!");
-            spalteneingabe(spieler1, spieler2);
-        } else if (Spiel.füllungspalten[Feld.spalten - 1] > 5) {
-            System.out.println("Spalte voll!!!!");
+        if (!(EingabeA.charAt(0) > '0' && EingabeA.charAt(0) < '8')) {
+            System.out.println("Achtung! Zahlen eingeben");
             spalteneingabe(spieler1, spieler2);
         } else {
-            Spiel.füllungspalten[Feld.spalten - 1]++;
+            Feld.spalten = Integer.parseInt(EingabeA);
+
+            if (Feld.spalten < 1 || Feld.spalten > 7) {
+                System.out.println();
+                System.out.println("Achtung! Die eingegebene Spaltennummer muss zwischen 1 und 7 liegen!");
+                spalteneingabe(spieler1, spieler2);
+            } else if (Spiel.füllungspalten[Feld.spalten - 1] > 5) {
+                System.out.println("Spalte voll!!!!");
+                spalteneingabe(spieler1, spieler2);
+            } else {
+                Spiel.füllungspalten[Feld.spalten - 1]++;
+            }
         }
     }
 }
