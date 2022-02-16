@@ -17,7 +17,7 @@
          <children>
             <HBox prefHeight="100.0" prefWidth="686.0">
                <children>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="98.0" prefWidth="774.0" text="VierGewinnt">
+                  <Label fx:id="ueberschrift" alignment="CENTER" contentDisplay="CENTER" onDragDetected="#ueberschrift" prefHeight="98.0" prefWidth="774.0" text="VierGewinnt">
                      <font>
                         <Font size="20.0" />
                      </font>

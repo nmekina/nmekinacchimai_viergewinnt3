@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
@@ -61,6 +62,12 @@ public class HelloController {
     public Circle k66;
     public TextField nauswahl;
     public Button confirmbutton;
+    public Button blau;
+    public Button rot;
+    public TextField nauswahl1;
+    public Button confirmbutton3;
+    public Label ueberschrift;
+    public Button restart;
 
     public void buttonclick1(ActionEvent actionEvent) {
 
@@ -85,5 +92,14 @@ public class HelloController {
     }
 
     public void confirm(ActionEvent actionEvent) {
+    }
+
+    public void blau(ActionEvent actionEvent) {
+    }
+
+    public void rot(ActionEvent actionEvent) {
+    }
+
+    public void ueberschrift(MouseEvent mouseEvent) {
     }
 }
