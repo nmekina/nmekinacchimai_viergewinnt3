@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
@@ -76,27 +77,7 @@ public class HelloController {
     public Label ueberschrift;
     public Button restart;
 
-    public void buttonclick1(ActionEvent actionEvent) {
-
-    }
-
-    public void buttonclick2(ActionEvent actionEvent) {
-    }
-
-    public void buttonclick3(ActionEvent actionEvent) {
-    }
-
-    public void buttonclick4(ActionEvent actionEvent) {
-    }
-
-    public void buttonclick5(ActionEvent actionEvent) {
-    }
-
-    public void buttonclick6(ActionEvent actionEvent) {
-    }
-
-    public void buttonclick7(ActionEvent actionEvent) {
-    }
+   
 
     public void confirm() {
         Spieler spieler1 = new Spieler();
@@ -197,5 +178,14 @@ public class HelloController {
     }
 
     public void nameauswahl(ActionEvent actionEvent) {
+    }
+
+    public void buttonclick(ActionEvent actionEvent) {
+        if(werfen1.isPressed()){
+           k06.setStyle("red");
+
+        }
+
+
     }
 }
