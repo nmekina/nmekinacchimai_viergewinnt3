@@ -10,3 +10,4 @@
 | 8 | 04.02.2022 | 2.0 | IntteliJ, Scene Builder | GUI(Scene Builder) angefangen, FXML-Fehler, GUI-View angefangen, Consolenanwendung fertiggestellt | Christian Chimani | iB |
 | 9 | 10.02.2022 | 2.1 | Scene Builder | GUI(Scene Builder) aussehen gestaltet, FXML-Fehler behoben | Christian Chimani | iB |
 | 10 | 11.02.2022 | 2.2 | Scene Builder | GUI(Scene Builder) aussehen gestaltet und fx ids vergeben, neues Git Repository erstellt damit fxml funktioniert | Christian Chimani | iB |
+| 11 | 16.02.2022 | 2.2 | Scene Builder, IntelliJ| GUI(Scene Builder), Hello Controller, Viewanwendung basierend auf Consolenanwendung angepasst | Christian Chimani | iB |
