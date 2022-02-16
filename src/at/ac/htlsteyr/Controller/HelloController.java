@@ -159,52 +159,67 @@ public class HelloController {
 
 
     public void buttonclick(ActionEvent actionEvent) {
-        if (Spiel.spieler1) {
-            ueberschrift.setText(spieler1.getNickname() + " ist an der Reihe:");
-        } else if (Spiel.spieler2) {
-            ueberschrift.setText(spieler2.getNickname() + " ist an der Reihe:");
-        }
+        if (spieler1.getNickname() != null && spieler2.getNickname() != null && spieler1.getSpielstein() != 0 && spieler1.getSpielstein() != 0) {
 
-        if (spieler1.getSpielstein() == 'r' || spieler1.getSpielstein() == 'b')
-        Feld.spalten = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6));
-        Spiel.füllungspalten[Feld.spalten - 1]++;
-        s.werfen();
+            Feld.spalten = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6));
 
-        for (int z = 0; z <= 5; z++) {
-            for (int s = 0; s <= 6; s++) {
-                if (Feld.spielfeld[z][s] == 1) {
-                    if (spieler1.getSpielstein() == 'r') {
-                        a[s][z].setFill(Paint.valueOf("#40E0d0"));
-                    } else if (spieler1.getSpielstein() == 'b') {
-                        a[s][z].setFill(Paint.valueOf("#F08080"));
-                    }
-                } else if (Feld.spielfeld[z][s] == 2) {
-                    if (spieler2.getSpielstein() == 'r') {
-                        a[s][z].setFill(Paint.valueOf("#40E0d0"));
-                    } else if (spieler2.getSpielstein() == 'b') {
-                        a[s][z].setFill(Paint.valueOf("#F08080"));
+            if (Spiel.füllungspalten[Feld.spalten - 1] <= 5) {
+                Spiel.füllungspalten[Feld.spalten - 1]++;
+                s.werfen();
+
+                for (int z = 0; z <= 5; z++) {
+                    for (int s = 0; s <= 6; s++) {
+                        if (Feld.spielfeld[z][s] == 1) {
+                            if (spieler1.getSpielstein() == 'r') {
+                                a[s][z].setFill(Paint.valueOf("#40E0d0"));
+                            } else if (spieler1.getSpielstein() == 'b') {
+                                a[s][z].setFill(Paint.valueOf("#F08080"));
+                            }
+                        } else if (Feld.spielfeld[z][s] == 2) {
+                            if (spieler2.getSpielstein() == 'r') {
+                                a[s][z].setFill(Paint.valueOf("#40E0d0"));
+                            } else if (spieler2.getSpielstein() == 'b') {
+                                a[s][z].setFill(Paint.valueOf("#F08080"));
+                            }
+                        }
                     }
                 }
-            }
-        }
 
-        if (s.checkwin()) {
-            if (Spiel.spieler1) {
-                Alert aler = new Alert(Alert.AlertType.NONE);
-                aler.setAlertType(Alert.AlertType.INFORMATION);
-                aler.setTitle("Winner");
-                aler.setContentText(spieler1.getNickname() + " hat gewonnen!");
-                aler.show();
+                if (s.checkwin()) {
+                    if (Spiel.spieler1) {
+                        Alert aler = new Alert(Alert.AlertType.NONE);
+                        aler.setAlertType(Alert.AlertType.INFORMATION);
+                        aler.setTitle("Winner");
+                        aler.setContentText(spieler1.getNickname() + " hat gewonnen!");
+                        aler.show();
+                    } else {
+                        Alert aler = new Alert(Alert.AlertType.NONE);
+                        aler.setAlertType(Alert.AlertType.INFORMATION);
+                        aler.setTitle("Winner");
+                        aler.setContentText(spieler2.getNickname() + " hat gewonnen!");
+                        aler.show();
+                    }
+                }
+                Spiel.spielertausch();
+                if (Spiel.spieler1) {
+                    ueberschrift.setText(spieler1.getNickname() + " ist an der Reihe:");
+                } else if (Spiel.spieler2) {
+                    ueberschrift.setText(spieler2.getNickname() + " ist an der Reihe:");
+                }
             } else {
                 Alert aler = new Alert(Alert.AlertType.NONE);
-                aler.setAlertType(Alert.AlertType.INFORMATION);
-                aler.setTitle("Winner");
-                aler.setContentText(spieler2.getNickname() + " hat gewonnen!");
+                aler.setAlertType(Alert.AlertType.ERROR);
+                aler.setTitle("Error");
+                aler.setContentText("Spalte voll!");
                 aler.show();
             }
+        } else {
+            Alert aler = new Alert(Alert.AlertType.NONE);
+            aler.setAlertType(Alert.AlertType.ERROR);
+            aler.setTitle("Error");
+            aler.setContentText("Name/Farbe eingeben");
+            aler.show();
         }
-        Spiel.spielertausch();
     }
-
 }
 
