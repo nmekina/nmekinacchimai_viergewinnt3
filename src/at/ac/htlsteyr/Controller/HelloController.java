@@ -8,6 +8,7 @@ import at.ac.htlsteyr.View.FeldViewGUI;
 import com.sun.jdi.IntegerValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -143,88 +144,77 @@ public class HelloController {
 
     public void buttonclick(ActionEvent actionEvent) {
         Circle[][] a = new Circle[10][10];
-        a[0][1]=k01;
-        a[0][2]=k02;
-        a[0][3]=k03;
-        a[0][4]=k04;
-        a[0][5]=k05;
-        a[0][6]=k06;
+        a[0][0]=k01;
+        a[0][1]=k02;
+        a[0][2]=k03;
+        a[0][3]=k04;
+        a[0][4]=k05;
+        a[0][5]=k06;
 
-        a[1][1]=k11;
-        a[1][2]=k12;
-        a[1][3]=k13;
-        a[1][4]=k14;
-        a[1][5]=k15;
-        a[1][6]=k16;
+        a[1][0]=k11;
+        a[1][1]=k12;
+        a[1][2]=k13;
+        a[1][3]=k14;
+        a[1][4]=k15;
+        a[1][5]=k16;
 
-        a[2][1]=k21;
-        a[2][2]=k22;
-        a[2][3]=k23;
-        a[2][4]=k24;
-        a[2][5]=k25;
-        a[2][6]=k26;
+        a[2][0]=k21;
+        a[2][1]=k22;
+        a[2][2]=k23;
+        a[2][3]=k24;
+        a[2][4]=k25;
+        a[2][5]=k26;
 
-        a[3][1]=k31;
-        a[3][2]=k32;
-        a[3][3]=k33;
-        a[3][4]=k34;
-        a[3][5]=k35;
-        a[3][6]=k36;
+        a[3][0]=k31;
+        a[3][1]=k32;
+        a[3][2]=k33;
+        a[3][3]=k34;
+        a[3][4]=k35;
+        a[3][5]=k36;
 
-        a[4][1]=k41;
-        a[4][2]=k42;
-        a[4][3]=k43;
-        a[4][4]=k44;
-        a[4][5]=k45;
-        a[4][6]=k46;
+        a[4][0]=k41;
+        a[4][1]=k42;
+        a[4][2]=k43;
+        a[4][3]=k44;
+        a[4][4]=k45;
+        a[4][5]=k46;
 
-        a[5][1]=k51;
-        a[5][2]=k52;
-        a[5][3]=k53;
-        a[5][4]=k54;
-        a[5][5]=k55;
-        a[5][6]=k56;
+        a[5][0]=k51;
+        a[5][1]=k52;
+        a[5][2]=k53;
+        a[5][3]=k54;
+        a[5][4]=k55;
+        a[5][5]=k56;
 
-        a[6][1]=k61;
-        a[6][2]=k62;
-        a[6][3]=k63;
-        a[6][4]=k64;
-        a[6][5]=k65;
-        a[6][6]=k66;
+        a[6][0]=k61;
+        a[6][1]=k62;
+        a[6][2]=k63;
+        a[6][3]=k64;
+        a[6][4]=k65;
+        a[6][5]=k66;
 
-
-
-
-        a[0][6].setFill(Paint.valueOf("#15ff00"));
-        // setFill(Paint.valueOf("#15ff00"));
-        Spiel s = new Spiel();
+        Spiel spiel = new Spiel();
         Feld.spalten = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6));
         Spiel.füllungspalten[Feld.spalten - 1]++;
-        s.werfen();
-        if (s.checkwin()) {
-            ueberschrift.setText(" hat gewonnen!");
-        }
-        Spiel.spielertausch();
+        spiel.werfen();
 
-        for (int zcounter = 1; zcounter <= 6; zcounter++) {
-            for (int scounter = 0; scounter <= 6; scounter++) {
-                String ktest = "k" + scounter + zcounter;
 
-                for (int i = 0; i <= 6; i++) {
-                    for (int j = 1; j <= 6; j++) {
-                    if (ktest.equals("k"+i+j)) {
-
-                        a[i][j].setFill(Paint.valueOf("#15ff00"));
-                    }
-                }}
-
-                if (Feld.spielfeld[zcounter][scounter] == 1) {
-
-                } else if (Feld.spielfeld[zcounter][scounter] == 2) {
-
+        for (int z = 0; z <= 5; z++) {
+            for (int s = 0; s <= 6; s++) {
+                if (Feld.spielfeld[z][s] == 1) {
+                    a[s][z].setFill(Paint.valueOf("#40E0d0"));
+                } else if (Feld.spielfeld[z][s] == 2) {
+                    a[s][z].setFill(Paint.valueOf("#F08080"));
                 }
             }
         }
+
+
+        if (spiel.checkwin()) {
+
+            ueberschrift.setText(" hat gewonnen!");
+        }
+        Spiel.spielertausch();
     }
 
 }
