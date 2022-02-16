@@ -181,11 +181,22 @@ public class HelloController {
     }
 
     public void buttonclick(ActionEvent actionEvent) {
-        if(werfen1.isHover()){
+        String Eingabe;
+        if (werfen1.isHover()) {
             k06.setFill(Paint.valueOf("#15ff00"));
+            Eingabe= String.valueOf(1);
+            Feld.spalten = Integer.parseInt(Eingabe);
+
+            if (Feld.spalten < 1 || Feld.spalten > 7) {
+
+            } else if (Spiel.füllungspalten[Feld.spalten - 1] > 5) {
 
 
+            } else {
+                Spiel.füllungspalten[Feld.spalten - 1]++;
+            }
+        }
 
 
+        }
     }
-}
