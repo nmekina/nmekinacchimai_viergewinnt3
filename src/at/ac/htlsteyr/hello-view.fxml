@@ -128,5 +128,9 @@
       <Label prefHeight="51.0" prefWidth="149.0" />
       <TextField fx:id="nauswahl" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#nameauswahl" prefHeight="25.0" prefWidth="290.0" promptText="Nickname" />
       <Button fx:id="confirmbutton" mnemonicParsing="false" onAction="#confirm" text="Confirm" />
+      <Button fx:id="blau" mnemonicParsing="false" onAction="#blau" text="RED" />
+      <Button fx:id="rot" mnemonicParsing="false" onAction="#rot" text="BLUE" />
+      <TextField fx:id="nauswahl1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#nameauswahl" prefHeight="25.0" prefWidth="290.0" promptText="Nickname" />
+      <Button fx:id="confirmbutton3" mnemonicParsing="false" onAction="#confirm" text="Confirm" />
    </children>
 </VBox>
