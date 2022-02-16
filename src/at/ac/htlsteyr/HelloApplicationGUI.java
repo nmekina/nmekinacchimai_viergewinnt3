@@ -43,6 +43,8 @@ HelloApplicationGUI extends Application {
         spieler1.setNickname(scannerspieler1.next());
         */
 
+        spieler1.setNickname("Nico");
+        spieler2.setNickname("Chri");
 
         do {
             /*
@@ -58,8 +60,9 @@ HelloApplicationGUI extends Application {
 
         if (Spiel.spieler1 == true) {
             //System.out.println(spieler1.getNickname() + " beginnt: Spielstein(x/o) wählen: ");
-            Scanner scannerspielstein = new Scanner(System.in);
+            //Scanner scannerspielstein = new Scanner(System.in);
 
+            /*
             if (scannerspielstein.next().charAt(0) == 'x') {
                 spieler1.setSpielstein('x');
                 spieler2.setSpielstein('o');
@@ -67,11 +70,13 @@ HelloApplicationGUI extends Application {
                 spieler1.setSpielstein('o');
                 spieler2.setSpielstein('x');
             }
+             */
         } else if (Spiel.spieler2 == true) {
             /*
             System.out.println(spieler2.getNickname() + " beginnt: Spielstein(x/o) wählen: ");
             Scanner scannerspielstein = new Scanner(System.in);
              */
+            /*
             if (scannerspielstein.next().charAt(0) == 'x') {
                 spieler2.setSpielstein('x');
                 spieler1.setSpielstein('o');
@@ -79,7 +84,9 @@ HelloApplicationGUI extends Application {
                 spieler2.setSpielstein('o');
                 spieler1.setSpielstein('x');
             }
+             */
         }
+
 
         while (s.checkwin() == false) {
             fw.display(spieler1, spieler2);
