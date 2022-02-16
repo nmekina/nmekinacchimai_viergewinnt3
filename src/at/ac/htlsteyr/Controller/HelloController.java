@@ -181,10 +181,10 @@ public class HelloController {
     }
 
     public void buttonclick(ActionEvent actionEvent) {
-        if(werfen1.isPressed()){
-           k06.setStyle("red");
+        if(werfen1.isHover()){
+            k06.setFill(Paint.valueOf("#15ff00"));
 
-        }
+
 
 
     }
