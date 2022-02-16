@@ -17,6 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public class HelloController {
@@ -141,6 +142,10 @@ public class HelloController {
     }
 
     public void buttonclick(ActionEvent actionEvent) {
+        Circle[] a = new Circle[1000];
+        a[0]=k06;
+        a[0].setFill(Paint.valueOf("#15ff00"));
+        // setFill(Paint.valueOf("#15ff00"));
         Spiel s = new Spiel();
         Feld.spalten = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6));
         Spiel.füllungspalten[Feld.spalten - 1]++;
@@ -158,7 +163,7 @@ public class HelloController {
                     for (int j = 1; j <= 6; j++) {
                     if (ktest.equals("k"+i+j)) {
 
-                        kij.setFill(Paint.valueOf("#15ff00"));
+                        //a[0].setFill(Paint.valueOf("#15ff00"));
                     }
                 }}
 
