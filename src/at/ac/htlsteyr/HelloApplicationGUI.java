@@ -1,11 +1,5 @@
 package at.ac.htlsteyr;
 
-import at.ac.htlsteyr.Model.Feld;
-import at.ac.htlsteyr.Model.Spiel;
-import at.ac.htlsteyr.Model.Spieler;
-import at.ac.htlsteyr.View.FeldView;
-import at.ac.htlsteyr.View.FeldViewConsole;
-import at.ac.htlsteyr.View.FeldViewGUI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,7 +8,6 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Scanner;
 
 public class
 HelloApplicationGUI extends Application {
