@@ -5,6 +5,7 @@ import at.ac.htlsteyr.Model.Spiel;
 import at.ac.htlsteyr.Model.Spieler;
 import at.ac.htlsteyr.View.FeldView;
 import at.ac.htlsteyr.View.FeldViewGUI;
+import com.sun.jdi.IntegerValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -77,7 +78,6 @@ public class HelloController {
     public Label ueberschrift;
     public Button restart;
 
-   
 
     public void confirm() {
         Spieler spieler1 = new Spieler();
@@ -99,7 +99,7 @@ public class HelloController {
         spieler1.setSpielstein('x');
         spieler2.setSpielstein('o');
 
-
+/*
         while (s.checkwin() == false) {
             fw.display(spieler1, spieler2);
             spalteneingabe(spieler1, spieler2);
@@ -108,13 +108,13 @@ public class HelloController {
         }
 
 
-
-
         if (Spiel.spieler1) {
             ueberschrift.setText(spieler1.getNickname() + " hat gewonnen!");
         } else {
             ueberschrift.setText(spieler2.getNickname() + " hat gewonnen!");
         }
+
+ */
 
         /*
         System.out.println("Wollen Sie erneut spielen? (Ja(j), Nein(nicht j)");
@@ -126,46 +126,6 @@ public class HelloController {
             confirm();
         }
          */
-    }
-
-    public void spalteneingabe(Spieler spieler1, Spieler spieler2) {
-        Feld.spalten = 0;
-        String EingabeA;
-
-        if (Spiel.spieler1 == true) {
-
-            System.out.println(spieler1.getNickname() + " bitte Spaltennummer angeben: ");
-            Scanner sc = new Scanner(System.in);
-            EingabeA = sc.next();
-        } else {
-            System.out.println(spieler2.getNickname() + " bitte Spaltennummer angeben: ");
-            Scanner sc = new Scanner(System.in);
-            EingabeA = sc.next();
-        }
-
-        if (EingabeA.charAt(0) == 'R') {
-            Feld.spalten = 0;
-            Feld.spielfeld = new int[6][7];
-            Spiel.füllungspalten = new int [7];
-            confirm();
-        }
-
-        if (!(EingabeA.charAt(0) > '0' && EingabeA.charAt(0) < '8')) {
-            System.out.println("Achtung! Zahlen eingeben");
-            spalteneingabe(spieler1, spieler2);
-        } else {
-            Feld.spalten = Integer.parseInt(EingabeA);
-
-            if (Feld.spalten < 1 || Feld.spalten > 7) {
-                System.out.println("Achtung! Die eingegebene Spaltennummer muss zwischen 1 und 7 liegen!");
-                spalteneingabe(spieler1, spieler2);
-            } else if (Spiel.füllungspalten[Feld.spalten - 1] > 5) {
-                System.out.println("Spalte voll!!!!");
-                spalteneingabe(spieler1, spieler2);
-            } else {
-                Spiel.füllungspalten[Feld.spalten - 1]++;
-            }
-        }
     }
 
     public void blau(ActionEvent actionEvent) {
@@ -181,22 +141,31 @@ public class HelloController {
     }
 
     public void buttonclick(ActionEvent actionEvent) {
-        String Eingabe;
-        if (werfen1.isHover()) {
-            k06.setFill(Paint.valueOf("#15ff00"));
-            Eingabe= String.valueOf(1);
-            Feld.spalten = Integer.parseInt(Eingabe);
+        Spiel s = new Spiel();
+        Feld.spalten = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6));
+        Spiel.füllungspalten[Feld.spalten - 1]++;
+        s.werfen();
+        if (s.checkwin()) {
+            ueberschrift.setText(" hat gewonnen!");
+        }
+        Spiel.spielertausch();
 
-            if (Feld.spalten < 1 || Feld.spalten > 7) {
+        for (int zcounter = 0; zcounter < 6; zcounter++) {
+            for (int scounter = 0; scounter < 7; scounter++) {
+                String ktest = "k" + zcounter + scounter;
 
-            } else if (Spiel.füllungspalten[Feld.spalten - 1] > 5) {
+                if(ktest.equals("k06")){
+                    k06.setFill(Paint.valueOf("#15ff00"));
+                }
 
+                if (Feld.spielfeld[zcounter][scounter] == 1) {
 
-            } else {
-                Spiel.füllungspalten[Feld.spalten - 1]++;
+                } else if (Feld.spielfeld[zcounter][scounter] == 2) {
+
+                }
             }
         }
-
-
-        }
     }
+
+}
+
