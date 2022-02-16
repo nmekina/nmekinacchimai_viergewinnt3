@@ -14,6 +14,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
+import static javafx.application.Application.launch;
+
 public class HelloController {
     public Button werfen1;
     public Button werfen2;
@@ -224,5 +226,9 @@ public class HelloController {
     }
 
     public void restart(ActionEvent actionEvent) {
+        Feld.spalten = 0;
+        Feld.spielfeld = new int[6][7];
+        Spiel.füllungspalten = new int [7];
+        HelloApplicationGUI.launch();
     }
 }
