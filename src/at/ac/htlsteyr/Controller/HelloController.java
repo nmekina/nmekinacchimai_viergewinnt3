@@ -142,9 +142,12 @@ public class HelloController {
     }
 
     public void buttonclick(ActionEvent actionEvent) {
-        Circle[] a = new Circle[1000];
+        Circle[][] a = new Circle[10][10];
+        a[0][1]=k01;
         a[0]=k06;
         a[0].setFill(Paint.valueOf("#15ff00"));
+
+        a[0][6].setFill(Paint.valueOf("#15ff00"));
         // setFill(Paint.valueOf("#15ff00"));
         Spiel s = new Spiel();
         Feld.spalten = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6));
