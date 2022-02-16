@@ -118,40 +118,7 @@ public class HelloController {
         spieler1.setSpielstein('x');
         spieler2.setSpielstein('o');
 
-        /*
-        if (Spiel.spieler1 == true) {
-            System.out.println(spieler1.getNickname() + " beginnt: Spielstein(x/o) wählen: ");
-            Scanner scannerspielstein = new Scanner(System.in);
 
-
-            if (scannerspielstein.next().charAt(0) == 'x') {
-                spieler1.setSpielstein('x');
-                spieler2.setSpielstein('o');
-            } else {
-                spieler1.setSpielstein('o');
-                spieler2.setSpielstein('x');
-            }
-
-        } else if (Spiel.spieler2 == true) {
-
-            System.out.println(spieler2.getNickname() + " beginnt: Spielstein(x/o) wählen: ");
-            Scanner scannerspielstein = new Scanner(System.in);
-
-
-            if (scannerspielstein.next().charAt(0) == 'x') {
-                spieler2.setSpielstein('x');
-                spieler1.setSpielstein('o');
-            } else {
-                spieler2.setSpielstein('o');
-                spieler1.setSpielstein('x');
-            }
-
-        }
-        */
-
-
-
-/*
         while (s.checkwin() == false) {
             fw.display(spieler1, spieler2);
             spalteneingabe(spieler1, spieler2);
@@ -159,14 +126,13 @@ public class HelloController {
             s.spielertausch();
         }
 
- */
 
 
 
         if (Spiel.spieler1) {
-
+            ueberschrift.setText(spieler1.getNickname() + " hat gewonnen!");
         } else {
-            //System.out.println(spieler2.getNickname() + " hat gewonnen!");
+            ueberschrift.setText(spieler2.getNickname() + " hat gewonnen!");
         }
 
         /*
@@ -176,7 +142,7 @@ public class HelloController {
             Feld.spalten = 0;
             Feld.spielfeld = new int[6][7];
             Spiel.füllungspalten = new int [7];
-            launch();
+            confirm();
         }
          */
     }
