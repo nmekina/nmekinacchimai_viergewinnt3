@@ -59,18 +59,7 @@ public class HelloController {
     public Circle k65;
     public Circle k66;
 
-    @FXML
-    protected void onHelloButtonClick() {
-
-
-        //welcomeText.setText("Welcome to JavaFX Application!");
-    }
-
-
     public void buttonclick1(ActionEvent actionEvent) {
-        if (k06.getFill(Paint.valueOf) == "white") {
-            k06.setFill(Paint.valueOf("red"));
-        }
 
     }
 
