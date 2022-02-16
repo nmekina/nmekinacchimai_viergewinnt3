@@ -154,9 +154,13 @@ public class HelloController {
             for (int scounter = 0; scounter < 7; scounter++) {
                 String ktest = "k" + zcounter + scounter;
 
-                if(ktest.equals("k06")){
-                    k06.setFill(Paint.valueOf("#15ff00"));
-                }
+                for (int i = 0; i <= 6; i++) {
+                    for (int j = 1; j <= 6; j++) {
+                    if (ktest.equals("k"+i+j)) {
+
+                        kij.setFill(Paint.valueOf("#15ff00"));
+                    }
+                }}
 
                 if (Feld.spielfeld[zcounter][scounter] == 1) {
 
