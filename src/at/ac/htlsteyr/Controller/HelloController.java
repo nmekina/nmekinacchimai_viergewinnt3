@@ -144,8 +144,56 @@ public class HelloController {
     public void buttonclick(ActionEvent actionEvent) {
         Circle[][] a = new Circle[10][10];
         a[0][1]=k01;
-        a[0]=k06;
-        a[0].setFill(Paint.valueOf("#15ff00"));
+        a[0][2]=k02;
+        a[0][3]=k03;
+        a[0][4]=k04;
+        a[0][5]=k05;
+        a[0][6]=k06;
+
+        a[1][1]=k11;
+        a[1][2]=k12;
+        a[1][3]=k13;
+        a[1][4]=k14;
+        a[1][5]=k15;
+        a[1][6]=k16;
+
+        a[2][1]=k21;
+        a[2][2]=k22;
+        a[2][3]=k23;
+        a[2][4]=k24;
+        a[2][5]=k25;
+        a[2][6]=k26;
+
+        a[3][1]=k31;
+        a[3][2]=k32;
+        a[3][3]=k33;
+        a[3][4]=k34;
+        a[3][5]=k35;
+        a[3][6]=k36;
+
+        a[4][1]=k41;
+        a[4][2]=k42;
+        a[4][3]=k43;
+        a[4][4]=k44;
+        a[4][5]=k45;
+        a[4][6]=k46;
+
+        a[5][1]=k51;
+        a[5][2]=k52;
+        a[5][3]=k53;
+        a[5][4]=k54;
+        a[5][5]=k55;
+        a[5][6]=k56;
+
+        a[6][1]=k61;
+        a[6][2]=k62;
+        a[6][3]=k63;
+        a[6][4]=k64;
+        a[6][5]=k65;
+        a[6][6]=k66;
+
+
+
 
         a[0][6].setFill(Paint.valueOf("#15ff00"));
         // setFill(Paint.valueOf("#15ff00"));
@@ -158,15 +206,15 @@ public class HelloController {
         }
         Spiel.spielertausch();
 
-        for (int zcounter = 0; zcounter < 6; zcounter++) {
-            for (int scounter = 0; scounter < 7; scounter++) {
-                String ktest = "k" + zcounter + scounter;
+        for (int zcounter = 1; zcounter <= 6; zcounter++) {
+            for (int scounter = 0; scounter <= 6; scounter++) {
+                String ktest = "k" + scounter + zcounter;
 
                 for (int i = 0; i <= 6; i++) {
                     for (int j = 1; j <= 6; j++) {
                     if (ktest.equals("k"+i+j)) {
 
-                        //a[0].setFill(Paint.valueOf("#15ff00"));
+                        a[i][j].setFill(Paint.valueOf("#15ff00"));
                     }
                 }}
 
