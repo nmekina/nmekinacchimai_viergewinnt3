@@ -220,5 +220,6 @@ public class HelloController {
             aler.setContentText("Name/Farbe eingeben");
             aler.show();
         }
+
     }
 }
