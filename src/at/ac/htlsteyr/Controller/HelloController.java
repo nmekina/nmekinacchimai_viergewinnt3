@@ -222,4 +222,7 @@ public class HelloController {
         }
 
     }
+
+    public void restart(ActionEvent actionEvent) {
+    }
 }
