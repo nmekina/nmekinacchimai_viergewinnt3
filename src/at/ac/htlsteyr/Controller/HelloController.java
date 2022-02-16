@@ -1,5 +1,6 @@
 package at.ac.htlsteyr.Controller;
 
+import at.ac.htlsteyr.HelloApplicationGUI;
 import at.ac.htlsteyr.Model.Feld;
 import at.ac.htlsteyr.Model.Spiel;
 import at.ac.htlsteyr.Model.Spieler;
@@ -74,47 +75,21 @@ public class HelloController {
     Spieler spieler1 = new Spieler();
     Spieler spieler2 = new Spieler();
     Spiel s = new Spiel();
+    Circle[][] a = new Circle[10][10];
 
     public void confirm() {
-
         spieler1.setNickname(nauswahl.getText());
         spieler2.setNickname(nauswahl1.getText());
         s.zufallsgenerator();
-        if (Spiel.spieler1) {
-            ueberschrift.setText(spieler1 + "beginnt");
-        } else if (Spiel.spieler2) {
-            ueberschrift.setText(spieler2 + "beginnt");
-        }
-
         nauswahl.setText("");
         nauswahl1.setText("");
-    }
-
-    public void blau(ActionEvent actionEvent) {
-        spieler1.setSpielstein('b');
-    }
-
-    public void rot(ActionEvent actionEvent) {
-        spieler1.setSpielstein('r');
-    }
-
-    public void nameauswahl(ActionEvent actionEvent) {
-        String namensauswahl = ((Button) actionEvent.getSource()).getId();
-        String getnickname = ((Button) actionEvent.getSource()).getText();
-
-        if (namensauswahl.equals("nauswahl")) {
-            spieler1.setNickname(getnickname);
-        } else if (namensauswahl.equals("nauswahl1")) {
-            spieler2.setNickname(getnickname);
+        if (Spiel.spieler1) {
+            ueberschrift.setText(spieler1.getNickname() + " ist an der Reihe:");
+        } else if (Spiel.spieler2) {
+            ueberschrift.setText(spieler2.getNickname() + " ist an der Reihe:");
         }
-    }
-
-    public void ueberschrift(MouseEvent mouseEvent) {
-    }
 
 
-    public void buttonclick(ActionEvent actionEvent) {
-        Circle[][] a = new Circle[10][10];
         a[0][0] = k01;
         a[0][1] = k02;
         a[0][2] = k03;
@@ -163,41 +138,70 @@ public class HelloController {
         a[6][3] = k64;
         a[6][4] = k65;
         a[6][5] = k66;
+    }
 
+    public void blau(ActionEvent actionEvent) {
+        spieler1.setSpielstein('b');
+        spieler2.setSpielstein('r');
+    }
+
+    public void rot(ActionEvent actionEvent) {
+        spieler1.setSpielstein('r');
+        spieler2.setSpielstein('b');
+    }
+
+    public void nameauswahl(ActionEvent actionEvent) {
+
+    }
+
+    public void ueberschrift(MouseEvent mouseEvent) {
+    }
+
+
+    public void buttonclick(ActionEvent actionEvent) {
+        if (Spiel.spieler1) {
+            ueberschrift.setText(spieler1.getNickname() + " ist an der Reihe:");
+        } else if (Spiel.spieler2) {
+            ueberschrift.setText(spieler2.getNickname() + " ist an der Reihe:");
+        }
+
+        if (spieler1.getSpielstein() == 'r' || spieler1.getSpielstein() == 'b')
         Feld.spalten = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6));
         Spiel.füllungspalten[Feld.spalten - 1]++;
         s.werfen();
 
-
         for (int z = 0; z <= 5; z++) {
             for (int s = 0; s <= 6; s++) {
                 if (Feld.spielfeld[z][s] == 1) {
-                    a[s][z].setFill(Paint.valueOf("#40E0d0"));
+                    if (spieler1.getSpielstein() == 'r') {
+                        a[s][z].setFill(Paint.valueOf("#40E0d0"));
+                    } else if (spieler1.getSpielstein() == 'b') {
+                        a[s][z].setFill(Paint.valueOf("#F08080"));
+                    }
                 } else if (Feld.spielfeld[z][s] == 2) {
-                    a[s][z].setFill(Paint.valueOf("#F08080"));
+                    if (spieler2.getSpielstein() == 'r') {
+                        a[s][z].setFill(Paint.valueOf("#40E0d0"));
+                    } else if (spieler2.getSpielstein() == 'b') {
+                        a[s][z].setFill(Paint.valueOf("#F08080"));
+                    }
                 }
             }
         }
 
-
         if (s.checkwin()) {
-
-            // create a alert
-            Alert aler = new Alert(Alert.AlertType.NONE);
-
-
-            // set alert type
-            aler.setAlertType(Alert.AlertType.WARNING);
-
-            // set content text
-            aler.setContentText("Winner winner chicken dinner");
-
-            // show the dialog
-            aler.show();
-
-
-
-
+            if (Spiel.spieler1) {
+                Alert aler = new Alert(Alert.AlertType.NONE);
+                aler.setAlertType(Alert.AlertType.INFORMATION);
+                aler.setTitle("Winner");
+                aler.setContentText(spieler1.getNickname() + " hat gewonnen!");
+                aler.show();
+            } else {
+                Alert aler = new Alert(Alert.AlertType.NONE);
+                aler.setAlertType(Alert.AlertType.INFORMATION);
+                aler.setTitle("Winner");
+                aler.setContentText(spieler2.getNickname() + " hat gewonnen!");
+                aler.show();
+            }
         }
         Spiel.spielertausch();
     }
