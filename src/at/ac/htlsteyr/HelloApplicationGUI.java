@@ -5,6 +5,7 @@ import at.ac.htlsteyr.Model.Spiel;
 import at.ac.htlsteyr.Model.Spieler;
 import at.ac.htlsteyr.View.FeldView;
 import at.ac.htlsteyr.View.FeldViewConsole;
+import at.ac.htlsteyr.View.FeldViewGUI;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -34,7 +35,7 @@ HelloApplicationGUI extends Application {
         Spieler spieler1 = new Spieler();
         Spieler spieler2 = new Spieler();
         Spiel s = new Spiel();
-        FeldView fw = new FeldViewConsole();
+        FeldView fw = new FeldViewGUI();
 
 
         System.out.println("Name: Spieler1: ");
@@ -56,7 +57,7 @@ HelloApplicationGUI extends Application {
 
 
         if (Spiel.spieler1 == true) {
-            System.out.println(spieler1.getNickname() + " beginnt: Spielstein(x/o) wählen: ");
+            //System.out.println(spieler1.getNickname() + " beginnt: Spielstein(x/o) wählen: ");
             Scanner scannerspielstein = new Scanner(System.in);
 
             if (scannerspielstein.next().charAt(0) == 'x') {
@@ -67,8 +68,10 @@ HelloApplicationGUI extends Application {
                 spieler2.setSpielstein('x');
             }
         } else if (Spiel.spieler2 == true) {
+            /*
             System.out.println(spieler2.getNickname() + " beginnt: Spielstein(x/o) wählen: ");
             Scanner scannerspielstein = new Scanner(System.in);
+             */
             if (scannerspielstein.next().charAt(0) == 'x') {
                 spieler2.setSpielstein('x');
                 spieler1.setSpielstein('o');
@@ -87,11 +90,12 @@ HelloApplicationGUI extends Application {
 
 
         if (Spiel.spieler1) {
-            System.out.println(spieler1.getNickname() + " hat gewonnen!");
+            //System.out.println(spieler1.getNickname() + " hat gewonnen!");
         } else {
-            System.out.println(spieler2.getNickname() + " hat gewonnen!");
+            //System.out.println(spieler2.getNickname() + " hat gewonnen!");
         }
 
+        /*
         System.out.println("Wollen Sie erneut spielen? (Ja(j), Nein(nicht j)");
         Scanner scannerneustart = new Scanner(System.in);
         if (scannerneustart.next().charAt(0) == 'j') {
@@ -100,6 +104,7 @@ HelloApplicationGUI extends Application {
             Spiel.füllungspalten = new int [7];
             launch();
         }
+         */
 
     }
 
