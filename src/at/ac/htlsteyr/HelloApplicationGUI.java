@@ -31,27 +31,27 @@ HelloApplicationGUI extends Application {
         stage.setScene(scene);
         stage.show();
 
-        
+
         Spieler spieler1 = new Spieler();
         Spieler spieler2 = new Spieler();
         Spiel s = new Spiel();
         FeldView fw = new FeldViewGUI();
 
-        /*
+
         System.out.println("Name: Spieler1: ");
         Scanner scannerspieler1 = new Scanner(System.in);
         spieler1.setNickname(scannerspieler1.next());
-        */
+
 
         spieler1.setNickname("Nico");
         spieler2.setNickname("Chri");
 
         do {
-            /*
+
             System.out.println("Name: Spieler2: ");
             Scanner scannerspieler2 = new Scanner(System.in);
             spieler2.setNickname(scannerspieler2.next());
-             */
+
         } while (spieler1.getNickname().equals(spieler2.getNickname()));
 
 
