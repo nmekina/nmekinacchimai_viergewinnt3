@@ -7,6 +7,7 @@ import at.ac.htlsteyr.View.FeldView;
 import at.ac.htlsteyr.View.FeldViewGUI;
 import com.sun.jdi.IntegerValue;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -212,7 +213,22 @@ public class HelloController {
 
         if (spiel.checkwin()) {
 
+            // create a alert
+            Alert aler = new Alert(Alert.AlertType.NONE);
+
+
+            // set alert type
+            aler.setAlertType(Alert.AlertType.CONFIRMATION);
+
+            // set content text
+            aler.setContentText("ConfirmationDialog");
+
+            // show the dialog
+            aler.show();
+
+
             ueberschrift.setText(" hat gewonnen!");
+
         }
         Spiel.spielertausch();
     }
