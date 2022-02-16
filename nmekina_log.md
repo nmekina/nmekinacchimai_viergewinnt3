@@ -10,3 +10,4 @@
 | 8 | 04.02.2022 | 2.0 | IntteliJ | wincondition überarbeitet, ToDoes überarbeitet, Consolenanwendung fertiggestellt | Nico Mekina | iB |
 | 9 | 10.02.2022 | 2.1 | IntteliJ | Restart und Console, fxml Fehler | Nico Mekina | iB |
 | 10 | 11.02.2022 | 2.2 | Scene Builder, IntelliJ | GUI(Scene Builder) fx ids vergeben, neues Git Repository erstellt damit fxml funktioniert, Console wieder zum Laufen gebracht | Nico Mekina | iB |
+| 11 | 16.02.2022 | 2.2 | IntelliJ | GUI(Scene Builder), Hello Controller, Viewanwendung basierend auf Consolenanwendung angepasst | Nico Mekina | iB |
