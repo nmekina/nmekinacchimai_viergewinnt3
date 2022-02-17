@@ -101,6 +101,9 @@ public class FeldViewGui implements FeldView{
             System.out.println("Playername1=" + aktivePlayer.getKey() + ", Playername2=" + aktivePlayer.getValue());
             spieler1.setNickname(aktivePlayer.getKey());
             spieler2.setNickname(aktivePlayer.getValue());
+            if (spieler1.getNickname().equals(spieler2.getNickname())) {
+                start(spieler1, spieler2);
+            }
         });
 
         Spiel s = new Spiel();

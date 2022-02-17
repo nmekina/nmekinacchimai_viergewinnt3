@@ -104,44 +104,50 @@ public class HelloController {
     }
 
     public void buttonclick(ActionEvent actionEvent) {
-        if (spieler1.getNickname() != null && spieler2.getNickname() != null && spieler1.getSpielstein() != 0 && spieler1.getSpielstein() != 0 && !s.checkwin()) {
+        if (!(Spiel.füllungspalten[0] == 6 && Spiel.füllungspalten[1] == 6 && Spiel.füllungspalten[2] == 6 && Spiel.füllungspalten[3] == 6
+                && Spiel.füllungspalten[4] == 6 && Spiel.füllungspalten[5] == 6 && Spiel.füllungspalten[6] == 6)) {
 
-            Feld.spalten = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6));
+            if (spieler1.getNickname() != null && spieler2.getNickname() != null && spieler1.getSpielstein() != 0 && spieler1.getSpielstein() != 0 && !s.checkwin()) {
 
-            if (Spiel.füllungspalten[Feld.spalten - 1] <= 5) {
-                Spiel.füllungspalten[Feld.spalten - 1]++;
-                s.werfen();
+                Feld.spalten = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6));
 
-                for (int z = 0; z <= 5; z++) {
-                    for (int s = 0; s <= 6; s++) {
-                        if (Feld.spielfeld[z][s] == 1) {
-                            if (spieler1.getSpielstein() == 'r') {
-                                a[s][z].setFill(Paint.valueOf("#40E0d0"));
-                            } else if (spieler1.getSpielstein() == 'b') {
-                                a[s][z].setFill(Paint.valueOf("#F08080"));
-                            }
-                        } else if (Feld.spielfeld[z][s] == 2) {
-                            if (spieler2.getSpielstein() == 'r') {
-                                a[s][z].setFill(Paint.valueOf("#40E0d0"));
-                            } else if (spieler2.getSpielstein() == 'b') {
-                                a[s][z].setFill(Paint.valueOf("#F08080"));
+                if (Spiel.füllungspalten[Feld.spalten - 1] < 6) {
+                    Spiel.füllungspalten[Feld.spalten - 1]++;
+                    s.werfen();
+
+                    for (int z = 0; z <= 5; z++) {
+                        for (int s = 0; s <= 6; s++) {
+                            if (Feld.spielfeld[z][s] == 1) {
+                                if (spieler1.getSpielstein() == 'r') {
+                                    a[s][z].setFill(Paint.valueOf("#40E0d0"));
+                                } else if (spieler1.getSpielstein() == 'b') {
+                                    a[s][z].setFill(Paint.valueOf("#F08080"));
+                                }
+                            } else if (Feld.spielfeld[z][s] == 2) {
+                                if (spieler2.getSpielstein() == 'r') {
+                                    a[s][z].setFill(Paint.valueOf("#40E0d0"));
+                                } else if (spieler2.getSpielstein() == 'b') {
+                                    a[s][z].setFill(Paint.valueOf("#F08080"));
+                                }
                             }
                         }
                     }
+
+                    if (s.checkwin()) {
+                        fv.display(spieler1, spieler2);
+                    }
+
+                    Spiel.spielertausch();
+                    fv.spielertausch(spieler1, spieler2);
+
+                } else {
+                    fv.alert("Spalte voll!");
                 }
-
-                if (s.checkwin()) {
-                    fv.display(spieler1, spieler2);
-                }
-
-                Spiel.spielertausch();
-                fv.spielertausch(spieler1, spieler2);
-
             } else {
-                fv.alert("Spalte voll!");
+                fv.alert("Name/Farbe eingeben");
             }
         } else {
-            fv.alert("Name/Farbe eingeben");
+            fv.alert("Unentschieden");
         }
 
     }
@@ -175,10 +181,10 @@ public class HelloController {
                 int x = 36;
 
                 if (mouseEvent.getY() > 113 && mouseEvent.getY() < 147) {
-                    if ((mouseEvent.getX() > x && mouseEvent.getX() < x2)||(mouseEvent.getX() > x + 100 && mouseEvent.getX() < x2 + 100)
-                            ||(mouseEvent.getX() > x + 200 && mouseEvent.getX() < x2 + 200)||(mouseEvent.getX() > x + 300 && mouseEvent.getX() < x2 + 300)
-                            ||(mouseEvent.getX() > x + 400 && mouseEvent.getX() < x2 + 400)||(mouseEvent.getX() > x + 500 && mouseEvent.getX() < x2 + 500)
-                            ||(mouseEvent.getX() > x + 600 && mouseEvent.getX() < x2 + 600)) {
+                    if ((mouseEvent.getX() > x && mouseEvent.getX() < x2) || (mouseEvent.getX() > x + 100 && mouseEvent.getX() < x2 + 100)
+                            || (mouseEvent.getX() > x + 200 && mouseEvent.getX() < x2 + 200) || (mouseEvent.getX() > x + 300 && mouseEvent.getX() < x2 + 300)
+                            || (mouseEvent.getX() > x + 400 && mouseEvent.getX() < x2 + 400) || (mouseEvent.getX() > x + 500 && mouseEvent.getX() < x2 + 500)
+                            || (mouseEvent.getX() > x + 600 && mouseEvent.getX() < x2 + 600)) {
                         //im Spielfeld!
                     } else {
                         fv.alert("Nicht im Spielfeld");
@@ -279,6 +285,7 @@ public class HelloController {
             }
         }
     }
+
     public void Menue(ActionEvent actionEvent) {
         if (Spiel.spieler1) {
             Alert aler = new Alert(Alert.AlertType.NONE);
@@ -294,8 +301,8 @@ public class HelloController {
                     "2) Klicken sie ChooseColour um ihre Speilsteinfarbe zu wählen \n" +
                     "3) Klicken sie Restart um das Spiel neu zu Starten \n" +
                     "4) Der aktive Spieler wird oben links angezeigt \n" +
-                    "5) Um einen Stein zu werfen müssen sie die Pfeiltaste drücken, die sich über ihrer gewüschten Spalte befindet \n"+
-                    "6) Um während des Spiels den Spielnamen zu ändern klicken Sie StartGame\n"+
+                    "5) Um einen Stein zu werfen müssen sie die Pfeiltaste drücken, die sich über ihrer gewüschten Spalte befindet \n" +
+                    "6) Um während des Spiels den Spielnamen zu ändern klicken Sie StartGame\n" +
                     "6) Um während des Spiels die Farbe zu ändern klicken Sie ChooseColour"
             );
             aler.show();
