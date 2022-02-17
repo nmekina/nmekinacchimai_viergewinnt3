@@ -251,7 +251,6 @@ public class HelloController {
             }
         }
     }
-
     public void Menue(ActionEvent actionEvent) {
         if (Spiel.spieler1) {
             Alert aler = new Alert(Alert.AlertType.NONE);
@@ -268,7 +267,8 @@ public class HelloController {
                     "3) Klicken sie Restart um das Spiel neu zu Starten \n" +
                     "4) Der aktive Spieler wird oben links angezeigt \n" +
                     "5) Um einen Stein zu werfen müssen sie die Pfeiltaste drücken, die sich über ihrer gewüschten Spalte befindet \n"+
-                    "6) Um während des Spiels den Spielnamen zu ändern klicken Sie StartGame"
+                    "6) Um während des Spiels den Spielnamen zu ändern klicken Sie StartGame\n"+
+                    "6) Um während des Spiels die Farbe zu ändern klicken Sie ChooseColour"
             );
             aler.show();
         }
