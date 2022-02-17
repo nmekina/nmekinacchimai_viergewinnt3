@@ -38,9 +38,9 @@ public class FeldViewGui implements FeldView{
 
     public void spielertausch(Spieler spieler1, Spieler spieler2) {
         if (Spiel.spieler1 == true) {
-            System.out.println(spieler1.getNickname() + " bitte Spaltennummer angeben: ");
+            ueberschrift.setText(spieler1.getNickname() + " ist an der Reihe");
         } else {
-            System.out.println(spieler2.getNickname() + " bitte Spaltennummer angeben: ");
+            ueberschrift.setText(spieler2.getNickname() + " ist an der Reihe");
         }
     }
 

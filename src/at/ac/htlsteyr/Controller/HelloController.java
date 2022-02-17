@@ -172,14 +172,10 @@ public class HelloController {
         dialog.setTitle("Login Dialog");
         dialog.setHeaderText("Look, a Custom Login Dialog");
 
-// Set the icon (must be included in the project).
 
-
-// Set the button types.
         ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
 
-// Create the username and password labels and fields.
         GridPane grid = new GridPane();
         grid.setHgap(10);
         grid.setVgap(10);
@@ -194,24 +190,18 @@ public class HelloController {
         grid.add(playername1, 1, 0);
         grid.add(new Label("Playername2:"), 0, 1);
         grid.add(playername2, 1, 1);
-        spieler1.setNickname(playername1.getText());
-        spieler2.setNickname(playername2.getText());
 
-// Enable/Disable login button depending on whether a username was entered.
         Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
         loginButton.setDisable(true);
 
-// Do some validation (using the Java 8 lambda syntax).
         playername1.textProperty().addListener((observable, oldValue, newValue) -> {
             loginButton.setDisable(newValue.trim().isEmpty());
         });
 
         dialog.getDialogPane().setContent(grid);
 
-// Request focus on the username field by default.
         Platform.runLater(() -> playername1.requestFocus());
 
-// Convert the result to a username-password-pair when the login button is clicked.
         dialog.setResultConverter(dialogButton -> {
             if (dialogButton == loginButtonType) {
                 return new Pair<>(playername1.getText(), playername2.getText());
@@ -223,8 +213,9 @@ public class HelloController {
 
         result.ifPresent(usernamePassword -> {
             System.out.println("Playername1=" + usernamePassword.getKey() + ", Playername2=" + usernamePassword.getValue());
+            spieler1.setNickname(usernamePassword.getKey());
+            spieler2.setNickname(usernamePassword.getValue());
         });
-
 
 
         fv.spielertausch(spieler1, spieler2);
@@ -286,16 +277,13 @@ public class HelloController {
         choices.add("Blue");
 
 
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("b", choices);
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Red", choices);
         dialog.setTitle("Choose");
         dialog.setHeaderText("Choose Dialog");
         dialog.setContentText("Choose your colour:");
 
-// Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            System.out.println("Your choice: " + result.get());
-        }
+
         if (result.get().equals("Red")) {
             spieler1.setSpielstein('r');
             spieler2.setSpielstein('b');
@@ -304,8 +292,5 @@ public class HelloController {
             spieler1.setSpielstein('r');
             spieler2.setSpielstein('b');
         }
-
-// The Java 8 way to get the response value (with lambda expression).
-        result.ifPresent(letter -> System.out.println("Your choice: " + letter));
     }
 }
