@@ -34,6 +34,7 @@ import java.util.Optional;
 
 
 public class HelloController {
+    public Button Menue;
     @FXML
     private javafx.scene.layout.VBox VBox;
     public Button werfen1;
@@ -100,8 +101,7 @@ public class HelloController {
     Circle[][] a = new Circle[10][10];
 
 
-    public void ueberschrift(MouseEvent mouseEvent) {
-    }
+    
 
     public void buttonclick(ActionEvent actionEvent) {
         if (!(Spiel.füllungspalten[0] == 6 && Spiel.füllungspalten[1] == 6 && Spiel.füllungspalten[2] == 6 && Spiel.füllungspalten[3] == 6

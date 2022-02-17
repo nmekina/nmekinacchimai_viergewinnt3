@@ -19,6 +19,9 @@ public class FeldViewGui implements FeldView{
     }
 
     @Override
+    /**
+     *
+     */
     public void display(Spieler spieler1, Spieler spieler2) {
         if (Spiel.spieler1) {
             Alert aler = new Alert(Alert.AlertType.NONE);
