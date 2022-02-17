@@ -93,6 +93,7 @@ public class HelloController {
     public Button start;
     public Button restart1;
     public Button choosecolour;
+    public Button Menue;
     Spieler spieler1 = new Spieler();
     Spieler spieler2 = new Spieler();
     Spiel s = new Spiel();
@@ -278,4 +279,27 @@ public class HelloController {
             }
         }
     }
-}
+    public void Menue(ActionEvent actionEvent) {
+        if (Spiel.spieler1) {
+            Alert aler = new Alert(Alert.AlertType.NONE);
+            aler.setAlertType(Alert.AlertType.INFORMATION);
+            aler.setTitle("Winner");
+            aler.setHeaderText(spieler1.getNickname() + " hat gewonnen!");
+            aler.show();
+        } else {
+            Alert aler = new Alert(Alert.AlertType.NONE);
+            aler.setAlertType(Alert.AlertType.INFORMATION);
+            aler.setTitle("Info");
+            aler.setHeaderText("1) Klicken sie StartGame und geben sie ihren Spielnamen an \n" +
+                    "2) Klicken sie ChooseColour um ihre Speilsteinfarbe zu wählen \n" +
+                    "3) Klicken sie Restart um das Spiel neu zu Starten \n" +
+                    "4) Der aktive Spieler wird oben links angezeigt \n" +
+                    "5) Um einen Stein zu werfen müssen sie die Pfeiltaste drücken, die sich über ihrer gewüschten Spalte befindet \n"+
+                    "6) Um während des Spiels den Spielnamen zu ändern klicken Sie StartGame\n"+
+                    "6) Um während des Spiels die Farbe zu ändern klicken Sie ChooseColour"
+            );
+            aler.show();
+        }
+    }
+
+    }
