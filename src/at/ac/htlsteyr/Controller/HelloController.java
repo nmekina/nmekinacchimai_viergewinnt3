@@ -90,14 +90,13 @@ public class HelloController {
     Spieler spieler1 = new Spieler();
     Spieler spieler2 = new Spieler();
     Spiel s = new Spiel();
-    FeldView fv = new FeldViewGui(ueberschrift, nauswahl, nauswahl1);
+    FeldView fv = new FeldViewGui(ueberschrift);
     Circle[][] a = new Circle[10][10];
 
 
 
     public void ueberschrift(MouseEvent mouseEvent) {
     }
-
 
     public void buttonclick(ActionEvent actionEvent) {
         if (spieler1.getNickname() != null && spieler2.getNickname() != null && spieler1.getSpielstein() != 0 && spieler1.getSpielstein() != 0 && !s.checkwin()) {
@@ -164,7 +163,7 @@ public class HelloController {
     }
 
     public void initialize() {
-        fv = new FeldViewGui(ueberschrift, nauswahl, nauswahl1);
+        fv = new FeldViewGui(ueberschrift);
         a[0][0] = k01;
         a[0][1] = k02;
         a[0][2] = k03;
@@ -216,56 +215,7 @@ public class HelloController {
     }
 
     public void start(ActionEvent actionEvent) {
-        Dialog<Pair<String, String>> dialog = new Dialog<>();
-        dialog.setTitle("Viergewinnt Login");
-        dialog.setHeaderText("Look, Viergewinnt Login Dialog");
-
-
-        ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
-
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-
-
-        TextField playername1 = new TextField();
-        playername1.setPromptText("Playername1");
-        TextField playername2 = new TextField();
-        playername2.setPromptText("Playername2");
-
-        grid.add(new Label("Playername1:"), 0, 0);
-        grid.add(playername1, 1, 0);
-        grid.add(new Label("Playername2:"), 0, 1);
-        grid.add(playername2, 1, 1);
-
-        Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
-        loginButton.setDisable(true);
-
-        playername1.textProperty().addListener((observable, oldValue, newValue) -> {
-            loginButton.setDisable(newValue.trim().isEmpty());
-        });
-
-        dialog.getDialogPane().setContent(grid);
-
-        Platform.runLater(() -> playername1.requestFocus());
-
-        dialog.setResultConverter(dialogButton -> {
-            if (dialogButton == loginButtonType) {
-                return new Pair<>(playername1.getText(), playername2.getText());
-            }
-            return null;
-        });
-
-        Optional<Pair<String, String>> result = dialog.showAndWait();
-
-        result.ifPresent(aktivePlayer -> {
-            System.out.println("Playername1=" + aktivePlayer.getKey() + ", Playername2=" + aktivePlayer.getValue());
-            spieler1.setNickname(aktivePlayer.getKey());
-            spieler2.setNickname(aktivePlayer.getValue());
-        });
-
-        fv.spielertausch(spieler1, spieler2);
+        fv.start(spieler1, spieler2);
     }
 
     public void choosecolour(ActionEvent actionEvent) {
@@ -274,7 +224,7 @@ public class HelloController {
         choices.add("Blue");
 
 
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("Red", choices);
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Colour", choices);
         dialog.setTitle("Choose");
         dialog.setHeaderText("Choose Dialog");
         dialog.setContentText("Choose your colour:");
@@ -282,12 +232,23 @@ public class HelloController {
         Optional<String> result = dialog.showAndWait();
 
         if (result.get().equals("Red")) {
-            spieler1.setSpielstein('r');
-            spieler2.setSpielstein('b');
-        }
-        if (result.get().equals("Blue")) {
-            spieler1.setSpielstein('r');
-            spieler2.setSpielstein('b');
+            if (!Spiel.spieler1) {
+                System.out.println("Spieler 1 Rot");
+                spieler1.setSpielstein('r');
+                spieler2.setSpielstein('b');
+            } else {
+                spieler2.setSpielstein('r');
+                spieler1.setSpielstein('b');
+            }
+        } else if (result.get().equals("Blue")) {
+            if (!Spiel.spieler1) {
+                System.out.println("Spieler 1 Blau");
+                spieler1.setSpielstein('b');
+                spieler2.setSpielstein('r');
+            } else {
+                spieler2.setSpielstein('b');
+                spieler1.setSpielstein('r');
+            }
         }
     }
 }

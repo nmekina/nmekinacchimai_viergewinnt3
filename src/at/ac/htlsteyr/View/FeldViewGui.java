@@ -2,21 +2,20 @@ package at.ac.htlsteyr.View;
 
 import at.ac.htlsteyr.Model.Spiel;
 import at.ac.htlsteyr.Model.Spieler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.application.Platform;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
+import javafx.util.Pair;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class FeldViewGui implements FeldView{
     Label ueberschrift;
-    TextField name1;
-    TextField name2;
 
-    public FeldViewGui(Label ueberschrift, TextField name1, TextField name2) {
+    public FeldViewGui(Label ueberschrift) {
         this.ueberschrift = ueberschrift;
-        this.name1 = name1;
-        this.name2 = name2;
     }
 
     @Override
@@ -37,7 +36,7 @@ public class FeldViewGui implements FeldView{
     }
 
     public void spielertausch(Spieler spieler1, Spieler spieler2) {
-        if (Spiel.spieler1 == true) {
+        if (Spiel.spieler1) {
             ueberschrift.setText(spieler1.getNickname() + " ist an der Reihe");
         } else {
             ueberschrift.setText(spieler2.getNickname() + " ist an der Reihe");
@@ -55,11 +54,58 @@ public class FeldViewGui implements FeldView{
 
     @Override
     public void start(Spieler spieler1, Spieler spieler2) {
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("Viergewinnt Login");
+        dialog.setHeaderText("Look, Viergewinnt Login Dialog");
+
+
+        ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+
+
+        TextField playername1 = new TextField();
+        playername1.setPromptText("Playername1");
+        TextField playername2 = new TextField();
+        playername2.setPromptText("Playername2");
+
+        grid.add(new Label("Playername1:"), 0, 0);
+        grid.add(playername1, 1, 0);
+        grid.add(new Label("Playername2:"), 0, 1);
+        grid.add(playername2, 1, 1);
+
+        Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
+        loginButton.setDisable(true);
+
+        playername1.textProperty().addListener((observable, oldValue, newValue) -> {
+            loginButton.setDisable(newValue.trim().isEmpty());
+        });
+
+        dialog.getDialogPane().setContent(grid);
+
+        Platform.runLater(() -> playername1.requestFocus());
+
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == loginButtonType) {
+                return new Pair<>(playername1.getText(), playername2.getText());
+            }
+            return null;
+        });
+
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+
+        result.ifPresent(aktivePlayer -> {
+            System.out.println("Playername1=" + aktivePlayer.getKey() + ", Playername2=" + aktivePlayer.getValue());
+            spieler1.setNickname(aktivePlayer.getKey());
+            spieler2.setNickname(aktivePlayer.getValue());
+        });
+
         Spiel s = new Spiel();
-        spieler1.setNickname(name1.getText());
-        spieler2.setNickname(name2.getText());
         s.zufallsgenerator();
-        name1.setText("");
-        name2.setText("");
+
+        spielertausch(spieler1, spieler2);
     }
 }
