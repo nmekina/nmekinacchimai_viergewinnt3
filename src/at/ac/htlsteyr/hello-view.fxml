@@ -24,6 +24,7 @@
                   <Button fx:id="start" alignment="CENTER" maxHeight="25.0" maxWidth="15.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#start" prefHeight="15.0" prefWidth="15.0" text="StartGame" />
                   <Button fx:id="restart1" alignment="CENTER" maxHeight="25.0" maxWidth="15.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#restart" prefHeight="15.0" prefWidth="15.0" text="Restart" />
                   <Button fx:id="choosecolour" alignment="CENTER" maxHeight="25.0" maxWidth="15.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#choosecolour" prefHeight="15.0" prefWidth="15.0" text="ChooseColour" />
+                  <Button fx:id="Menue" alignment="CENTER" maxHeight="25.0" maxWidth="15.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#Menue" prefHeight="15.0" prefWidth="15.0" text="Info" />
                </children></HBox>
          </children>
       </HBox>
