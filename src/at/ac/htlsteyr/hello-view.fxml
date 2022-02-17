@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -22,7 +21,9 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Button fx:id="restart" alignment="CENTER" maxHeight="25.0" maxWidth="15.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#restart" prefHeight="15.0" prefWidth="15.0" text="Restart" />
+                  <Button fx:id="start" alignment="CENTER" maxHeight="25.0" maxWidth="15.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#start" prefHeight="15.0" prefWidth="15.0" text="StartGame" />
+                  <Button fx:id="restart1" alignment="CENTER" maxHeight="25.0" maxWidth="15.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#restart" prefHeight="15.0" prefWidth="15.0" text="Restart" />
+                  <Button fx:id="choosecolour" alignment="CENTER" maxHeight="25.0" maxWidth="15.0" minHeight="25.0" minWidth="100.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#choosecolour" prefHeight="15.0" prefWidth="15.0" text="ChooseColour" />
                </children></HBox>
          </children>
       </HBox>
@@ -126,11 +127,5 @@
          </children>
       </GridPane>
       <Label prefHeight="51.0" prefWidth="149.0" />
-      <TextField fx:id="nauswahl" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#nameauswahl" prefHeight="25.0" prefWidth="290.0" promptText="Nickname" />
-      <Button fx:id="confirmbutton" mnemonicParsing="false" onAction="#confirm" text="Confirm" />
-      <Button fx:id="blau" mnemonicParsing="false" onAction="#blau" text="RED" />
-      <Button fx:id="rot" mnemonicParsing="false" onAction="#rot" text="BLUE" />
-      <TextField fx:id="nauswahl1" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#nameauswahl" prefHeight="25.0" prefWidth="290.0" promptText="Nickname" />
-      <Button fx:id="confirmbutton3" mnemonicParsing="false" onAction="#confirm" text="Confirm" />
    </children>
 </VBox>

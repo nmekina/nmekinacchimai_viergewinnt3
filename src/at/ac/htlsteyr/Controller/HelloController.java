@@ -6,22 +6,31 @@ import at.ac.htlsteyr.Model.Spiel;
 import at.ac.htlsteyr.Model.Spieler;
 import at.ac.htlsteyr.View.FeldView;
 import at.ac.htlsteyr.View.FeldViewGui;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
+import javax.swing.text.html.ImageView;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Optional;
 
 import static javafx.application.Application.launch;
 
@@ -83,6 +92,9 @@ public class HelloController {
     public Button confirmbutton3;
     public Label ueberschrift;
     public Button restart;
+    public Button start;
+    public Button restart1;
+    public Button choosecolour;
     Spieler spieler1 = new Spieler();
     Spieler spieler2 = new Spieler();
     Spiel s = new Spiel();
@@ -147,19 +159,6 @@ public class HelloController {
         a[6][5] = k66;
     }
 
-    public void blau(ActionEvent actionEvent) {
-        spieler1.setSpielstein('b');
-        spieler2.setSpielstein('r');
-    }
-
-    public void rot(ActionEvent actionEvent) {
-        spieler1.setSpielstein('r');
-        spieler2.setSpielstein('b');
-    }
-
-    public void nameauswahl(ActionEvent actionEvent) {
-
-    }
 
     public void ueberschrift(MouseEvent mouseEvent) {
     }
@@ -243,5 +242,94 @@ public class HelloController {
 
     public void initialize() {
         fv = new FeldViewGui(ueberschrift);
+    }
+
+    public void start(ActionEvent actionEvent) {
+        Dialog<Pair<String, String>> dialog = new Dialog<>();
+        dialog.setTitle("Login Dialog");
+        dialog.setHeaderText("Look, a Custom Login Dialog");
+
+// Set the icon (must be included in the project).
+
+
+// Set the button types.
+        ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(loginButtonType, ButtonType.CANCEL);
+
+// Create the username and password labels and fields.
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+
+
+        TextField playername1 = new TextField();
+        playername1.setPromptText("Playername1");
+        TextField playername2 = new TextField();
+        playername2.setPromptText("Playername2");
+
+        grid.add(new Label("Playername1:"), 0, 0);
+        grid.add(playername1, 1, 0);
+        grid.add(new Label("Playername2:"), 0, 1);
+        grid.add(playername2, 1, 1);
+        spieler1.setNickname(playername1.getText());
+        spieler2.setNickname(playername2.getText());
+
+// Enable/Disable login button depending on whether a username was entered.
+        Node loginButton = dialog.getDialogPane().lookupButton(loginButtonType);
+        loginButton.setDisable(true);
+
+// Do some validation (using the Java 8 lambda syntax).
+        playername1.textProperty().addListener((observable, oldValue, newValue) -> {
+            loginButton.setDisable(newValue.trim().isEmpty());
+        });
+
+        dialog.getDialogPane().setContent(grid);
+
+// Request focus on the username field by default.
+        Platform.runLater(() -> playername1.requestFocus());
+
+// Convert the result to a username-password-pair when the login button is clicked.
+        dialog.setResultConverter(dialogButton -> {
+            if (dialogButton == loginButtonType) {
+                return new Pair<>(playername1.getText(), playername2.getText());
+            }
+            return null;
+        });
+
+        Optional<Pair<String, String>> result = dialog.showAndWait();
+
+        result.ifPresent(usernamePassword -> {
+            System.out.println("Playername1=" + usernamePassword.getKey() + ", Playername2=" + usernamePassword.getValue());
+        });
+
+    }
+
+    public void choosecolour(ActionEvent actionEvent) {
+        ArrayList<String> choices = new ArrayList<>();
+        choices.add("Red");
+        choices.add("Blue");
+
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("b", choices);
+        dialog.setTitle("Choose");
+        dialog.setHeaderText("Choose Dialog");
+        dialog.setContentText("Choose your colour:");
+
+// Traditional way to get the response value.
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            System.out.println("Your choice: " + result.get());
+        }
+        if (result.get().equals("Red")) {
+            spieler1.setSpielstein('r');
+            spieler2.setSpielstein('b');
+        }
+        if (result.get().equals("Blue")) {
+            spieler1.setSpielstein('r');
+            spieler2.setSpielstein('b');
+        }
+
+// The Java 8 way to get the response value (with lambda expression).
+        result.ifPresent(letter -> System.out.println("Your choice: " + letter));
     }
 }
