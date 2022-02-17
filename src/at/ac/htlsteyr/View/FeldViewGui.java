@@ -20,7 +20,8 @@ public class FeldViewGui implements FeldView{
 
     @Override
     /**
-     *
+     * Wenn Wincon ausgelöst wird
+     * Win alert welcher spieler gewonnen hat
      */
     public void display(Spieler spieler1, Spieler spieler2) {
         if (Spiel.spieler1) {
@@ -38,6 +39,9 @@ public class FeldViewGui implements FeldView{
         }
     }
 
+    /**
+     *Aktiver Spieler wird ausgegeben
+     */
     public void spielertausch(Spieler spieler1, Spieler spieler2) {
         if (Spiel.spieler1) {
             ueberschrift.setText(spieler1.getNickname() + " ist an der Reihe");
@@ -56,6 +60,12 @@ public class FeldViewGui implements FeldView{
     }
 
     @Override
+    /**
+     * Viergewinnt Nickname auswahl
+     * Prüfen ob gültige Nickname auswahl
+     * zufälliger Spieler startet
+     *
+     */
     public void start(Spieler spieler1, Spieler spieler2) {
         Dialog<Pair<String, String>> dialog = new Dialog<>();
         dialog.setTitle("Viergewinnt Login");
