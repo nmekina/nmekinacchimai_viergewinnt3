@@ -10,7 +10,6 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -24,15 +23,12 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
-import javax.swing.text.html.ImageView;
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static javafx.application.Application.launch;
 
 public class HelloController {
     public Button werfen1;
@@ -85,11 +81,7 @@ public class HelloController {
     public Circle k65;
     public Circle k66;
     public TextField nauswahl;
-    public Button confirmbutton;
-    public Button blau;
-    public Button rot;
     public TextField nauswahl1;
-    public Button confirmbutton3;
     public Label ueberschrift;
     public Button restart;
     public Button start;
@@ -98,66 +90,9 @@ public class HelloController {
     Spieler spieler1 = new Spieler();
     Spieler spieler2 = new Spieler();
     Spiel s = new Spiel();
-    FeldView fv = new FeldViewGui(ueberschrift);
+    FeldView fv = new FeldViewGui(ueberschrift, nauswahl, nauswahl1);
     Circle[][] a = new Circle[10][10];
 
-    public void confirm() {
-        spieler1.setNickname(nauswahl.getText());
-        spieler2.setNickname(nauswahl1.getText());
-        s.zufallsgenerator();
-        nauswahl.setText("");
-        nauswahl1.setText("");
-        fv.spielertausch(spieler1, spieler2);
-
-        a[0][0] = k01;
-        a[0][1] = k02;
-        a[0][2] = k03;
-        a[0][3] = k04;
-        a[0][4] = k05;
-        a[0][5] = k06;
-
-        a[1][0] = k11;
-        a[1][1] = k12;
-        a[1][2] = k13;
-        a[1][3] = k14;
-        a[1][4] = k15;
-        a[1][5] = k16;
-
-        a[2][0] = k21;
-        a[2][1] = k22;
-        a[2][2] = k23;
-        a[2][3] = k24;
-        a[2][4] = k25;
-        a[2][5] = k26;
-
-        a[3][0] = k31;
-        a[3][1] = k32;
-        a[3][2] = k33;
-        a[3][3] = k34;
-        a[3][4] = k35;
-        a[3][5] = k36;
-
-        a[4][0] = k41;
-        a[4][1] = k42;
-        a[4][2] = k43;
-        a[4][3] = k44;
-        a[4][4] = k45;
-        a[4][5] = k46;
-
-        a[5][0] = k51;
-        a[5][1] = k52;
-        a[5][2] = k53;
-        a[5][3] = k54;
-        a[5][4] = k55;
-        a[5][5] = k56;
-
-        a[6][0] = k61;
-        a[6][1] = k62;
-        a[6][2] = k63;
-        a[6][3] = k64;
-        a[6][4] = k65;
-        a[6][5] = k66;
-    }
 
 
     public void ueberschrift(MouseEvent mouseEvent) {
@@ -200,21 +135,9 @@ public class HelloController {
 
             } else {
                 fv.alert("Spalte voll!");
-                Alert aler = new Alert(Alert.AlertType.NONE);
-                aler.setAlertType(Alert.AlertType.ERROR);
-                aler.setTitle("Error");
-                aler.setHeaderText("Spalte voll!");
-                aler.show();
             }
         } else {
             fv.alert("Name/Farbe eingeben");
-            /*
-            Alert aler = new Alert(Alert.AlertType.NONE);
-            aler.setAlertType(Alert.AlertType.ERROR);
-            aler.setTitle("Error");
-            aler.setHeaderText("Name/Farbe eingeben");
-            aler.show();
-             */
         }
 
     }
@@ -241,7 +164,7 @@ public class HelloController {
     }
 
     public void initialize() {
-        fv = new FeldViewGui(ueberschrift);
+        fv = new FeldViewGui(ueberschrift, nauswahl, nauswahl1);
     }
 
     public void start(ActionEvent actionEvent) {
@@ -301,6 +224,59 @@ public class HelloController {
         result.ifPresent(usernamePassword -> {
             System.out.println("Playername1=" + usernamePassword.getKey() + ", Playername2=" + usernamePassword.getValue());
         });
+
+
+
+        fv.spielertausch(spieler1, spieler2);
+
+        a[0][0] = k01;
+        a[0][1] = k02;
+        a[0][2] = k03;
+        a[0][3] = k04;
+        a[0][4] = k05;
+        a[0][5] = k06;
+
+        a[1][0] = k11;
+        a[1][1] = k12;
+        a[1][2] = k13;
+        a[1][3] = k14;
+        a[1][4] = k15;
+        a[1][5] = k16;
+
+        a[2][0] = k21;
+        a[2][1] = k22;
+        a[2][2] = k23;
+        a[2][3] = k24;
+        a[2][4] = k25;
+        a[2][5] = k26;
+
+        a[3][0] = k31;
+        a[3][1] = k32;
+        a[3][2] = k33;
+        a[3][3] = k34;
+        a[3][4] = k35;
+        a[3][5] = k36;
+
+        a[4][0] = k41;
+        a[4][1] = k42;
+        a[4][2] = k43;
+        a[4][3] = k44;
+        a[4][4] = k45;
+        a[4][5] = k46;
+
+        a[5][0] = k51;
+        a[5][1] = k52;
+        a[5][2] = k53;
+        a[5][3] = k54;
+        a[5][4] = k55;
+        a[5][5] = k56;
+
+        a[6][0] = k61;
+        a[6][1] = k62;
+        a[6][2] = k63;
+        a[6][3] = k64;
+        a[6][4] = k65;
+        a[6][5] = k66;
 
     }
 

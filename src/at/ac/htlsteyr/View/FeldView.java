@@ -9,4 +9,6 @@ public interface FeldView {
     void spielertausch(Spieler spieler1, Spieler spieler2);
 
     void alert(String s);
+
+    void start(Spieler spieler1, Spieler spieler2);
 }

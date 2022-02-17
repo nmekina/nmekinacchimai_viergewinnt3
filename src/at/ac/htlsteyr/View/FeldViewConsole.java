@@ -2,6 +2,7 @@ package at.ac.htlsteyr.View;
 
 import at.ac.htlsteyr.Model.*;
 
+import java.util.Scanner;
 
 
 public class FeldViewConsole implements FeldView {
@@ -41,11 +42,28 @@ public class FeldViewConsole implements FeldView {
 
     @Override
     public void spielertausch(Spieler spieler1, Spieler spieler2) {
-
+        if (Spiel.spieler1) {
+            System.out.println(spieler1.getNickname() + " ist an der Reihe:");
+        } else if (Spiel.spieler2) {
+            System.out.println(spieler2.getNickname() + " ist an der Reihe:");
+        }
     }
 
     @Override
     public void alert(String s) {
+        System.out.println(s);
+    }
 
+    @Override
+    public void start(Spieler spieler1, Spieler spieler2) {
+        System.out.println("Name: Spieler1: ");
+        Scanner scannerspieler1 = new Scanner(System.in);
+        spieler1.setNickname(scannerspieler1.next());
+
+        do {
+            System.out.println("Name: Spieler2: ");
+            Scanner scannerspieler2 = new Scanner(System.in);
+            spieler2.setNickname(scannerspieler2.next());
+        } while (spieler1.getNickname().equals(spieler2.getNickname()));
     }
 }

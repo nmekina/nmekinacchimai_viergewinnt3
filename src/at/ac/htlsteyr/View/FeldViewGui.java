@@ -4,12 +4,19 @@ import at.ac.htlsteyr.Model.Spiel;
 import at.ac.htlsteyr.Model.Spieler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+
+import java.util.Scanner;
 
 public class FeldViewGui implements FeldView{
-    Label l;
+    Label ueberschrift;
+    TextField name1;
+    TextField name2;
 
-    public FeldViewGui(Label l) {
-        this.l = l;
+    public FeldViewGui(Label ueberschrift, TextField name1, TextField name2) {
+        this.ueberschrift = ueberschrift;
+        this.name1 = name1;
+        this.name2 = name2;
     }
 
     @Override
@@ -30,15 +37,29 @@ public class FeldViewGui implements FeldView{
     }
 
     public void spielertausch(Spieler spieler1, Spieler spieler2) {
-        if (Spiel.spieler1) {
-            l.setText(spieler1.getNickname() + " ist an der Reihe:");
-        } else if (Spiel.spieler2) {
-            l.setText(spieler2.getNickname() + " ist an der Reihe:");
+        if (Spiel.spieler1 == true) {
+            System.out.println(spieler1.getNickname() + " bitte Spaltennummer angeben: ");
+        } else {
+            System.out.println(spieler2.getNickname() + " bitte Spaltennummer angeben: ");
         }
     }
 
     @Override
     public void alert(String s) {
+        Alert aler = new Alert(Alert.AlertType.NONE);
+        aler.setAlertType(Alert.AlertType.ERROR);
+        aler.setTitle("Error");
+        aler.setHeaderText(s);
+        aler.show();
+    }
 
+    @Override
+    public void start(Spieler spieler1, Spieler spieler2) {
+        Spiel s = new Spiel();
+        spieler1.setNickname(name1.getText());
+        spieler2.setNickname(name2.getText());
+        s.zufallsgenerator();
+        name1.setText("");
+        name2.setText("");
     }
 }
