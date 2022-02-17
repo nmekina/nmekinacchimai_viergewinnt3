@@ -8,6 +8,8 @@ import at.ac.htlsteyr.View.FeldView;
 import at.ac.htlsteyr.View.FeldViewGui;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -18,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
@@ -31,6 +34,8 @@ import java.util.Optional;
 
 
 public class HelloController {
+    @FXML
+    private javafx.scene.layout.VBox VBox;
     public Button werfen1;
     public Button werfen2;
     public Button werfen3;
@@ -80,6 +85,7 @@ public class HelloController {
     public Circle k64;
     public Circle k65;
     public Circle k66;
+
     public TextField nauswahl;
     public TextField nauswahl1;
     public Label ueberschrift;
@@ -92,7 +98,6 @@ public class HelloController {
     Spiel s = new Spiel();
     FeldView fv = new FeldViewGui(ueberschrift);
     Circle[][] a = new Circle[10][10];
-
 
 
     public void ueberschrift(MouseEvent mouseEvent) {
@@ -163,6 +168,28 @@ public class HelloController {
     }
 
     public void initialize() {
+        EventHandler<MouseEvent> eh = new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                int x2 = 64;
+                int x = 36;
+
+                if (mouseEvent.getY() > 113 && mouseEvent.getY() < 147) {
+                    if ((mouseEvent.getX() > x && mouseEvent.getX() < x2)||(mouseEvent.getX() > x + 100 && mouseEvent.getX() < x2 + 100)
+                        ||(mouseEvent.getX() > x + 200 && mouseEvent.getX() < x2 + 200)||(mouseEvent.getX() > x + 300 && mouseEvent.getX() < x2 + 300)
+                        ||(mouseEvent.getX() > x + 400 && mouseEvent.getX() < x2 + 400)||(mouseEvent.getX() > x + 500 && mouseEvent.getX() < x2 + 500)
+                        ||(mouseEvent.getX() > x + 600 && mouseEvent.getX() < x2 + 600)) {
+                        //im Spielfeld!
+                    } else {
+                        fv.alert("Nicht im Spielfeld");
+                    }
+                } else {
+                    fv.alert("Nicht im Spielfeld");
+                }
+            }
+
+        };
+        VBox.addEventFilter(MouseEvent.MOUSE_CLICKED, eh);
         fv = new FeldViewGui(ueberschrift);
         a[0][0] = k01;
         a[0][1] = k02;
