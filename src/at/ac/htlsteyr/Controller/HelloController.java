@@ -169,8 +169,8 @@ public class HelloController {
 
     public void start(ActionEvent actionEvent) {
         Dialog<Pair<String, String>> dialog = new Dialog<>();
-        dialog.setTitle("Login Dialog");
-        dialog.setHeaderText("Look, a Custom Login Dialog");
+        dialog.setTitle("Viergewinnt Login");
+        dialog.setHeaderText("Look, Viergewinnt Login Dialog");
 
 
         ButtonType loginButtonType = new ButtonType("Login", ButtonBar.ButtonData.OK_DONE);
@@ -211,10 +211,10 @@ public class HelloController {
 
         Optional<Pair<String, String>> result = dialog.showAndWait();
 
-        result.ifPresent(usernamePassword -> {
-            System.out.println("Playername1=" + usernamePassword.getKey() + ", Playername2=" + usernamePassword.getValue());
-            spieler1.setNickname(usernamePassword.getKey());
-            spieler2.setNickname(usernamePassword.getValue());
+        result.ifPresent(aktivePlayer -> {
+            System.out.println("Playername1=" + aktivePlayer.getKey() + ", Playername2=" + aktivePlayer.getValue());
+            spieler1.setNickname(aktivePlayer.getKey());
+            spieler2.setNickname(aktivePlayer.getValue());
         });
 
 
