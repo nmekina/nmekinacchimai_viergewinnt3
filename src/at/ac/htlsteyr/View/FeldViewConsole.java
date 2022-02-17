@@ -40,6 +40,9 @@ public class FeldViewConsole implements FeldView {
         System.out.println();
     }
 
+    /**
+     * Ausgabe des Spielers der an der Reihe ist
+     */
     @Override
     public void spielertausch(Spieler spieler1, Spieler spieler2) {
         if (Spiel.spieler1) {
@@ -49,11 +52,17 @@ public class FeldViewConsole implements FeldView {
         }
     }
 
+    /**
+     * Ausgabe eines Fehler
+     */
     @Override
     public void alert(String s) {
         System.out.println(s);
     }
 
+    /**
+     * Ausgabe des start des Spieles und setzen des Spielsteins
+     */
     @Override
     public void start(Spieler spieler1, Spieler spieler2) {
         System.out.println("Name: Spieler1: ");

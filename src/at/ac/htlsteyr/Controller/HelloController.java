@@ -90,8 +90,14 @@ public class HelloController {
     Circle[][] a = new Circle[10][10];
 
 
-    
-
+    /**
+     * reagiert auf klicken eines buttons und wirft entsprechend den Spielstein in das Spielfeld
+     * prüft ob:
+     * die spalte voll ist
+     * jemand gewonnen hat
+     * name farbe eingegeben wurde
+     * unentschieden gespielt wurde
+     */
     public void buttonclick(ActionEvent actionEvent) {
         if (!(Spiel.füllungspalten[0] == 6 && Spiel.füllungspalten[1] == 6 && Spiel.füllungspalten[2] == 6 && Spiel.füllungspalten[3] == 6
                 && Spiel.füllungspalten[4] == 6 && Spiel.füllungspalten[5] == 6 && Spiel.füllungspalten[6] == 6)) {
@@ -141,6 +147,9 @@ public class HelloController {
 
     }
 
+    /**
+     * startet das Spiel neu
+     */
     public void restart(ActionEvent actionEvent) throws IOException {
         Feld.spalten = 0;
         Feld.spielfeld = new int[6][7];
@@ -162,6 +171,10 @@ public class HelloController {
         stage.show();
     }
 
+    /**
+     * Initialisiert handle und prüfft ob in das Spielfeld gedrückt wurde und nicht außerhalb
+     * Initialisiert die Kreise
+     */
     public void initialize() {
         EventHandler<MouseEvent> eh = new EventHandler<MouseEvent>() {
             @Override
@@ -236,10 +249,16 @@ public class HelloController {
         a[6][5] = k66;
     }
 
+    /**
+     * startet das Spiel
+     */
     public void start(ActionEvent actionEvent) {
         fv.start(spieler1, spieler2);
     }
 
+    /**
+     * setzt die farbe des Spielers der an der Reihe ist
+     */
     public void choosecolour(ActionEvent actionEvent) {
         ArrayList<String> choices = new ArrayList<>();
 
@@ -275,26 +294,21 @@ public class HelloController {
         }
     }
 
+    /**
+     * zeigt das Menü mit Spielanleitung an
+     */
     public void Menue(ActionEvent actionEvent) {
-        if (Spiel.spieler1) {
-            Alert aler = new Alert(Alert.AlertType.NONE);
-            aler.setAlertType(Alert.AlertType.INFORMATION);
-            aler.setTitle("Winner");
-            aler.setHeaderText(spieler1.getNickname() + " hat gewonnen!");
-            aler.show();
-        } else {
-            Alert aler = new Alert(Alert.AlertType.NONE);
-            aler.setAlertType(Alert.AlertType.INFORMATION);
-            aler.setTitle("Info");
-            aler.setHeaderText("1) Klicken sie StartGame und geben sie ihren Spielnamen an \n" +
-                    "2) Klicken sie ChooseColour um ihre Speilsteinfarbe zu wählen \n" +
-                    "3) Klicken sie Restart um das Spiel neu zu Starten \n" +
-                    "4) Der aktive Spieler wird oben links angezeigt \n" +
-                    "5) Um einen Stein zu werfen müssen sie die Pfeiltaste drücken, die sich über ihrer gewüschten Spalte befindet \n" +
-                    "6) Um während des Spiels den Spielnamen zu ändern klicken Sie StartGame\n" +
-                    "6) Um während des Spiels die Farbe zu ändern klicken Sie ChooseColour"
-            );
-            aler.show();
-        }
+        Alert aler = new Alert(Alert.AlertType.NONE);
+        aler.setAlertType(Alert.AlertType.INFORMATION);
+        aler.setTitle("Info");
+        aler.setHeaderText("1) Klicken sie StartGame und geben sie ihren Spielnamen an \n" +
+                "2) Klicken sie ChooseColour um ihre Speilsteinfarbe zu wählen \n" +
+                "3) Klicken sie Restart um das Spiel neu zu Starten \n" +
+                "4) Der aktive Spieler wird oben links angezeigt \n" +
+                "5) Um einen Stein zu werfen müssen sie die Pfeiltaste drücken, die sich über ihrer gewüschten Spalte befindet \n" +
+                "6) Um während des Spiels den Spielnamen zu ändern klicken Sie StartGame\n" +
+                "6) Um während des Spiels die Farbe zu ändern klicken Sie ChooseColour"
+        );
+        aler.show();
     }
 }
