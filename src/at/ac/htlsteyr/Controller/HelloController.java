@@ -6,25 +6,18 @@ import at.ac.htlsteyr.Model.Spiel;
 import at.ac.htlsteyr.Model.Spieler;
 import at.ac.htlsteyr.View.FeldView;
 import at.ac.htlsteyr.View.FeldViewGui;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 
 import java.io.File;
 import java.io.IOException;
@@ -86,11 +79,7 @@ public class HelloController {
     public Circle k64;
     public Circle k65;
     public Circle k66;
-
-    public TextField nauswahl;
-    public TextField nauswahl1;
     public Label ueberschrift;
-    public Button restart;
     public Button start;
     public Button restart1;
     public Button choosecolour;
