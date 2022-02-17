@@ -39,5 +39,13 @@ public class FeldViewConsole implements FeldView {
         System.out.println();
     }
 
+    @Override
+    public void spielertausch(Spieler spieler1, Spieler spieler2) {
 
+    }
+
+    @Override
+    public void alert(String s) {
+
+    }
 }

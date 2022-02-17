@@ -5,7 +5,11 @@ import at.ac.htlsteyr.Model.Feld;
 import at.ac.htlsteyr.Model.Spiel;
 import at.ac.htlsteyr.Model.Spieler;
 import at.ac.htlsteyr.View.FeldView;
+import at.ac.htlsteyr.View.FeldViewGui;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,6 +17,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
 
 import static javafx.application.Application.launch;
 
@@ -77,6 +86,7 @@ public class HelloController {
     Spieler spieler1 = new Spieler();
     Spieler spieler2 = new Spieler();
     Spiel s = new Spiel();
+    FeldView fv = new FeldViewGui(ueberschrift);
     Circle[][] a = new Circle[10][10];
 
     public void confirm() {
@@ -85,12 +95,7 @@ public class HelloController {
         s.zufallsgenerator();
         nauswahl.setText("");
         nauswahl1.setText("");
-        if (Spiel.spieler1) {
-            ueberschrift.setText(spieler1.getNickname() + " ist an der Reihe:");
-        } else if (Spiel.spieler2) {
-            ueberschrift.setText(spieler2.getNickname() + " ist an der Reihe:");
-        }
-
+        fv.spielertausch(spieler1, spieler2);
 
         a[0][0] = k01;
         a[0][1] = k02;
@@ -161,7 +166,7 @@ public class HelloController {
 
 
     public void buttonclick(ActionEvent actionEvent) {
-        if (spieler1.getNickname() != null && spieler2.getNickname() != null && spieler1.getSpielstein() != 0 && spieler1.getSpielstein() != 0) {
+        if (spieler1.getNickname() != null && spieler2.getNickname() != null && spieler1.getSpielstein() != 0 && spieler1.getSpielstein() != 0 && !s.checkwin()) {
 
             Feld.spalten = Integer.parseInt(((Button) actionEvent.getSource()).getId().substring(6));
 
@@ -188,47 +193,55 @@ public class HelloController {
                 }
 
                 if (s.checkwin()) {
-                    if (Spiel.spieler1) {
-                        Alert aler = new Alert(Alert.AlertType.NONE);
-                        aler.setAlertType(Alert.AlertType.INFORMATION);
-                        aler.setTitle("Winner");
-                        aler.setContentText(spieler1.getNickname() + " hat gewonnen!");
-                        aler.show();
-                    } else {
-                        Alert aler = new Alert(Alert.AlertType.NONE);
-                        aler.setAlertType(Alert.AlertType.INFORMATION);
-                        aler.setTitle("Winner");
-                        aler.setContentText(spieler2.getNickname() + " hat gewonnen!");
-                        aler.show();
-                    }
+                    fv.display(spieler1, spieler2);
                 }
+
                 Spiel.spielertausch();
-                if (Spiel.spieler1) {
-                    ueberschrift.setText(spieler1.getNickname() + " ist an der Reihe:");
-                } else if (Spiel.spieler2) {
-                    ueberschrift.setText(spieler2.getNickname() + " ist an der Reihe:");
-                }
+                fv.spielertausch(spieler1, spieler2);
+
             } else {
+                fv.alert("Spalte voll!");
                 Alert aler = new Alert(Alert.AlertType.NONE);
                 aler.setAlertType(Alert.AlertType.ERROR);
                 aler.setTitle("Error");
-                aler.setContentText("Spalte voll!");
+                aler.setHeaderText("Spalte voll!");
                 aler.show();
             }
         } else {
+            fv.alert("Name/Farbe eingeben");
+            /*
             Alert aler = new Alert(Alert.AlertType.NONE);
             aler.setAlertType(Alert.AlertType.ERROR);
             aler.setTitle("Error");
-            aler.setContentText("Name/Farbe eingeben");
+            aler.setHeaderText("Name/Farbe eingeben");
             aler.show();
+             */
         }
 
     }
 
-    public void restart(ActionEvent actionEvent) {
+    public void restart(ActionEvent actionEvent) throws IOException {
         Feld.spalten = 0;
         Feld.spielfeld = new int[6][7];
-        Spiel.füllungspalten = new int [7];
-        HelloApplicationGUI.launch();
+        Spiel.füllungspalten = new int[7];
+
+        Stage stage = new Stage();
+
+        Stage stageclose = (Stage) restart.getScene().getWindow();
+        stageclose.close();
+
+        final FXMLLoader fxmlLoader = new FXMLLoader();
+        URL u = HelloApplicationGUI.class.getResource("hello-view.fxml");
+        System.out.println(new File("").getAbsolutePath());
+        System.out.println(u);
+        fxmlLoader.setLocation(u);
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("VierGewinnt");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void initialize() {
+        fv = new FeldViewGui(ueberschrift);
     }
 }
