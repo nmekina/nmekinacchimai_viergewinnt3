@@ -76,7 +76,11 @@ public class HelloApplicationConsole {
         }
     }
 
-
+    /**
+     * Sobald R eingelesen wird, startet das Spiel neu
+     *Es wird geprüft ob eine Gültige Spaltennummer ausgwaehlt wurde
+     *In füllungsspalten werden für die Spalte gültigen einwurf möglichkeiten verringert
+     */
     public static void spalteneingabe(Spieler spieler1, Spieler spieler2) {
         Feld.spalten = 0;
         String EingabeA;

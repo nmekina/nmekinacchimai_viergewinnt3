@@ -7,7 +7,7 @@ public class Spiel {
 
     /**
      * Durch Math.random wird eine zufällige zahl zwischen 1 und 2 gewählt
-     * So wird der Spieler anfangen ausgewählt
+     * So wird der Spieler der anfaengt ausgewählt
      */
     public void zufallsgenerator() {
 
@@ -30,7 +30,8 @@ public class Spiel {
     }
 
     /**
-     *
+     *Wenn spieler1 einen Stein wirft wird 1 gespeichert
+     *Wenn spieler2 einen Stein wirft wird 2 gespeichert
      */
     public void werfen() {
         if (spieler1 == true) {
